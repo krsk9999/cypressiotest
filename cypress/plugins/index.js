@@ -1,3 +1,4 @@
+
 // ***********************************************************
 // This example plugins/index.js can be used to load plugins
 //
@@ -11,7 +12,24 @@
 // This function is called when a project is opened or re-opened (e.g. due to
 // the project's config changing)
 
+// promisified fs module
+const fs = require('fs-extra');
+const path = require('path');
+//import 'fs-extra';
+//import 'path';
+//import { readJson } from 'fs-extra';
+//import { resolve } from 'path';
+
+function getConfigurationByFile (file) {
+  const pathToConfigFile = path.resolve(`cypress.${file}.json`);
+
+  return fs.readJson(pathToConfigFile);
+}
+
+// plugins file
 module.exports = (on, config) => {
-  // `on` is used to hook into various events Cypress emits
-  // `config` is the resolved Cypress config
+  // accept a configFile value or use dev by default
+  const file = config.env.configFile || 'dev'
+  
+  return getConfigurationByFile(file)
 }

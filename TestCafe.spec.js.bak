@@ -1,0 +1,94 @@
+describe("App testing First Module", () => {
+	beforeEach(() => {
+        cy.visit('https://devexpress.github.io/testcafe/example/');
+    })
+    
+    it('submit developer name', () => {
+        cy.get('#developer-name').type('Name')
+        .get('#submit-button').scrollIntoView()
+        .get('#submit-button').click()
+        
+        cy.get('.result-content').should('be.visible')
+        .url().should('include','thank-you');
+       
+    })
+
+    it('Enable slider', ()=>{
+
+        cy.get('#slider').as('Slider');
+
+        cy.get('@Slider').should('have.class','ui-state-disabled')
+        .get('#tried-test-cafe').click()
+        .get('#tried-test-cafe').should('not.have.class', 'ui-state-disabled')
+    })
+k
+    it('Text Area should have an empty value by default', () => {
+
+        cy.get('#comments').as('Textarea')
+
+        .get('#tried-test-cafe').click()
+        .get('@Textarea').should('have.value', '')
+        .get('@Textarea').type('NEW VALUE for the Text Area')
+        .get('@Textarea').should('have.value', 'NEW VALUE for the Text Area')
+
+    })
+
+    it("Validate Dynamic Locations variant a", () => {
+			let url = domainsData.landingDiabloMedia.url
+			let variant = domainsData.landingDiabloMedia.variants.a.url;
+			let navigationUrl = `${url}${variant}`;
+
+			//URls for each of the 9 scenarios of the Dynamic Locations validations
+			let first = `${navigationUrl}${dynamicLocationData.first.queryString}`;
+			let second = `${navigationUrl}${dynamicLocationData.second.queryString}`;
+			let third = `${navigationUrl}${dynamicLocationData.third.queryString}`;
+			let fourth = `${navigationUrl}${dynamicLocationData.fourth.queryString}`;
+			let fifth = `${navigationUrl}${dynamicLocationData.fifth.queryString}`;
+			let sixth = `${navigationUrl}${dynamicLocationData.sixth.queryString}`;
+			let septh = `${navigationUrl}${dynamicLocationData.septh.queryString}`;
+			let eighth = `${navigationUrl}${dynamicLocationData.eighth.queryString}`;
+			let nineth = `${navigationUrl}${dynamicLocationData.nineth.queryString}`;
+			
+			//Expected Values
+			let firstLocation = dynamicLocationData.first.expectedLocation;
+			let secondLocation = dynamicLocationData.second.expectedLocation;
+			let thirdLocation = dynamicLocationData.third.expectedLocation;
+			let fourthLocation = dynamicLocationData.fourth.expectedLocation;
+			let fifthLocation = dynamicLocationData.fifth.expectedLocation;
+			let sixthLocation = dynamicLocationData.sixth.expectedLocation;
+			let septhLocation = dynamicLocationData.septh.expectedLocation;
+			let eighthLocation = dynamicLocationData.eighth.expectedLocation;
+			let ninethLocation = dynamicLocationData.nineth.expectedLocation;
+
+			cy.navigate(first, null);
+			cy.wait(5000)
+			cy.get('#location_identifier').should("have.value", firstLocation);
+			cy.navigate(second, null);
+			cy.wait(5000)
+			cy.get('#location_identifier').should("have.value", secondLocation);
+			cy.navigate(third, null);
+			cy.wait(5000)
+			cy.get('#location_identifier').should("have.value", thirdLocation);
+			cy.navigate(fourth, null);
+			cy.wait(5000)
+			cy.get('#location_identifier').should("have.value", fourthLocation);
+			cy.navigate(fifth, null);
+			cy.wait(5000)
+			cy.get('#location_identifier').should("have.value", fifthLocation);
+			cy.navigate(sixth, null);
+			cy.wait(5000)
+			cy.get('#location_identifier').should("have.value", sixthLocation);
+			cy.navigate(septh, null);
+			cy.wait(5000)
+			cy.get('#location_identifier').should("have.value", septhLocation);
+			cy.navigate(eighth, null);
+			cy.wait(5000)
+			cy.get('#location_identifier').should("have.value", eighthLocation);
+			cy.navigate(nineth, null);
+			cy.wait(5000)
+			cy.get('#location_identifier').should("have.value", ninethLocation);
+
+		});
+
+
+})

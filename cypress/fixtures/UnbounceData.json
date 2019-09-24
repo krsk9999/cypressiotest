@@ -1,0 +1,291 @@
+{
+	"iDot": {
+		"url": "https://i.aplaceformom.com/",
+		"variants": {
+			"j": {
+				"url": "j.html",
+				"bodyTag": "i.aplaceformom.com-list-style"
+			},
+			"n": {
+				"url": "n.html"
+			},
+			"p": {
+				"url": "p.html",
+				"bodyTag": "semu-4-3-general-tbp-three-step"
+			}
+		}
+	},
+	"iDotVeterans": {
+		"url": "https://i.aplaceformom.com/veterans/",
+		"variants": {
+			"a": {
+				"url": "a.html",
+				"bodyTag": "semu-2-1-veterans"
+			}
+		}
+	},
+	"iDotLuxury": {
+		"url": "https://i.aplaceformom.com/luxury/",
+		"variants": {
+			"j": {
+				"url": "j.html",
+				"bodyTag": "semu-3-1-luxury"
+			}
+		}
+	},
+	"iDotLuxuryTY": {
+		"url": "https://i.aplaceformom.com/luxury-ty-page/",
+		"variants": {
+			"a": {
+				"url": "a.html",
+				"bodyTag": "semu-3-1-luxury"
+			}
+		}
+	},
+	"iDotHelloKrystof": {
+		"url": "https://i.aplaceformom.com/hello-krystof/",
+		"variants": {
+			"a": {
+				"url": "a.html",
+				"bodyTag": "affiliate-1-1-hellokrystof"
+			}
+		}
+	},
+	"iDotTBPE": {
+		"url": "https://i.aplaceformom.com/the-better-path-email/",
+		"variants": {
+			"a": {
+				"url": "a.html",
+				"bodyTag": "semu-4-2-general-tbp-four-step"
+			}
+		}
+	},
+	"iDotTBPS": {
+		"url": "https://i.aplaceformom.com/the-better-path-selections/",
+		"variants": {
+			"a": {
+				"url": "a.html",
+				"bodyTag": "semu-4-2-general-tbp-four-step"
+			}
+		}
+	},
+	"iDotTBPGO": {
+		"url": "https://i.aplaceformom.com/the-better-path-get-options/",
+		"variants": {
+			"a": {
+				"url": "a.html",
+				"bodyTag": "semu-4-2-general-tbp-four-step"
+			}
+		}
+	},
+	"iDotTBPSV2": {
+		"url": "https://i.aplaceformom.com/the-better-path-selections-v2/",
+		"variants": {
+			"a": {
+				"url": "a.html",
+				"bodyTag": "semu-4-3-general-tbp-three-step"
+			}
+		}
+	},
+	"iDotTBPGOV2": {
+		"url": "https://i.aplaceformom.com/the-better-path-get-options-V2/",
+		"variants": {
+			"a": {
+				"url": "a.html",
+				"bodyTag": "semu-4-3-general-tbp-three-step"
+			}
+		}
+	},
+	"cDot": {
+		"url": "https://c.aplaceformom.com/",
+		"variants": {
+			"e": {
+				"url": "e.html",
+				"bodyTag": "semb-3-1-general-locate"
+			},
+			"a": {
+				"url": "a.html"
+			},
+			"b": {
+				"url": "b.html"
+			},
+			"d": {
+				"url": "d.html"
+			}
+		}
+	},
+	"cDotMobile": {
+		"url": "https://c.aplaceformom.com/mobile/",
+		"variants": {
+			"a": {
+				"url": "a.html",
+				"bodyTag": ""
+			},
+			"b": {
+				"url": "b.html",
+				"bodyTag": "semb-1-1-general-m"
+			}
+		}
+	},
+	"mobileDot": {
+		"url": "https://mobile.aplaceformom.com/",
+		"variants": {
+			"a": {
+				"url": "a.html",
+				"bodyTag": "semu-1-1-general-m"
+			},
+			"g": {
+				"url": "g.html"
+			}
+		}
+	},
+	"landingDiabloMedia": {
+		"url": "https://landing.aplaceformom.com/diablo-media/",
+		"variants": {
+			"a": {
+				"url": "a.html",
+				"sourceId": "5845",
+				"phone": "8558878145"
+			}
+		}
+	},
+	"cDotTv1": {
+		"url": "https://c.aplaceformom.com/tv1/",
+		"variants": {
+			"a": {
+				"url": "a.html",
+				"bodyTag": "semb-4-1-tv-1"
+			}
+		}
+	},
+	"cDotTv2": {
+		"url": "https://c.aplaceformom.com/tv2/",
+		"variants": {
+			"a": {
+				"url": "a.html",
+				"bodyTag": "semb-4-1-tv-2"
+			}
+		}
+	},
+	"fbStepOneV1": {
+		"url": "https://fb.aplaceformom.com/facebook-step-one-v1/",
+		"variants": {
+			"b": {
+				"url": "b.html",
+				"bodyTag": "semb-2-2-fb-ELP"
+			}
+		}
+	},
+	"fbStepTwoV1": {
+		"url": "https://fb.aplaceformom.com/facebook-step-two-v1/",
+		"variants": {
+			"b": {
+				"url": "b.html",
+				"bodyTag": "semb-2-2-fb-ELP"
+			}
+		}
+	},
+	"fbStepThreeV1": {
+		"url": "https://fb.aplaceformom.com/facebook-step-three-v1/",
+		"variants": {
+			"b": {
+				"url": "b.html",
+				"bodyTag": "semb-2-2-fb-ELP"
+			}
+		}
+	},
+	"fbStepFourV1": {
+		"url": "https://fb.aplaceformom.com/facebook-step-four-v1/",
+		"variants": {
+			"b": {
+				"url": "b.html",
+				"bodyTag": "semb-2-2-fb-ELP"
+			}
+		}
+	},
+	"lClickBooth": {
+		"url": "https://landing.aplaceformom.com/clickbooth/",
+		"variants": {
+			"a": {
+				"url": "a.html",
+				"bodyTag": "affiliate-2-1-clickbooth"
+			}
+		}
+	},
+	"lClickBoothS1": {
+		"url": "https://landing.aplaceformom.com/clickbooth-step-1/",
+		"variants": {
+			"a": {
+				"url": "a.html",
+				"bodyTag": "affiliate-2-1-clickbooth-three-step"
+			}
+		}
+	},
+	"lClickBoothS2": {
+		"url": "https://landing.aplaceformom.com/clickbooth-step-2/",
+		"variants": {
+			"a": {
+				"url": "a.html",
+				"bodyTag": "affiliate-2-1-clickbooth-three-step"
+			}
+		}
+	},
+	"lClickBoothS3": {
+		"url": "https://landing.aplaceformom.com/clickbooth-step-3/",
+		"variants": {
+			"a": {
+				"url": "a.html",
+				"bodyTag": "affiliate-2-1-clickbooth-three-step"
+			}
+		}
+	},
+	"landingDexyp1": {
+		"url": "https://landing.aplaceformom.com/dexyp-1/",
+		"variants": {
+			"a": {
+				"url": "a.html",
+				"bodyTag": "affiliate-3-1-dexyp"
+			}
+		}
+	},
+	"landingDexyp2": {
+		"url": "https://landing.aplaceformom.com/dexyp-2/",
+		"variants": {
+			"a": {
+				"url": "a.html",
+				"bodyTag": "affiliate-3-1-dexyp-v2"
+			}
+		}
+	},
+	"landingDexyp3": {
+		"url": "https://landing.aplaceformom.com/dexyp-3/",
+		"variants": {
+			"a": {
+				"url": "a.html",
+				"bodyTag": "affiliate-3-1-dexyp-v3"
+			}
+		}
+	},
+	"landingDexyp4": {
+		"url": "https://landing.aplaceformom.com/dexyp-4/",
+		"variants": {
+			"a": {
+				"url": "a.html",
+				"bodyTag": "affiliate-3-1-dexyp-v4"
+			}
+		}
+	},
+	"testPage": {
+		"url": "https://unbounce-test.aplaceformom.com/"
+	},
+	"localSimpleFree":{
+		"url":"https://c.aplaceformom.com/email-landing-page/",
+		"variants": {
+			"a":{
+				"url": "a.html",
+				"bodyTag": "email-1-1-dinner",
+				"phone": "8883340763"
+			}
+		}
+	}
+}

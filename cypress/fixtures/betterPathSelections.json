@@ -1,0 +1,18 @@
+{
+    "timeLine":{
+        "thirtyDays": "within 30 days",
+        "sixtyDays": "within 60 days",
+        "urgent": "urgent",
+        "noRush": "no rush"
+    },
+    "roomType":{
+        "shared":"shared",
+        "privateOneBedroom": "private one bedroom",
+        "privateTwoBedroom": "private two bedroom"
+    },
+    "budget":{
+        "unsure": "unsure",
+        "standard": "standard",
+        "luxury": "luxury"
+    }
+}

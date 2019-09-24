@@ -1,0 +1,17 @@
+{
+    "defaultCommandTimeout": 10000,
+    "execTimeout":60000,
+    "taskTimeout": 60000,
+    "pageLoadTimeout": 60000,
+    "requestTimeout": 10000,
+    "responseTimeout": 30000,
+	"env": {
+        "location":"Lake of the Woods County,  MN",
+        "email":"kenneth.ramirez@aplaceformom.com",
+        "name":"Kenneth Ramirez Sanchez",
+        "phone":"(555) 555-5555",
+        "ubUrl": "https://app.unbounce.com/users/sign_in",
+        "ubUser": "kenneth.ramirez@aplaceformom.com",
+        "ubPass": "Nike!1986"
+	}
+}

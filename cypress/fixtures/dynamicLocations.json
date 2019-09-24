@@ -1,0 +1,38 @@
+{
+	"first": {
+		"queryString": "?&kw=3234-NB:G:NAT:S:Nursing:K:E&kwg=N:NM:X:H:X:X:E:nursing%20homes%20near%20me&keyword=nursing%20homes%20near%20me&match=e&device=m&network=g&account=AL.com%20Generic%20-%20US%20-%20Google&campaignid=1687941325&adgroupid=69567877321&ad_id=330774038351&AdPosition=1t1&geo=9058077&distrib=s&targetID=kwd-37174470709&interest=9060542&hl=nursing-homes%7C19%20Nursing%20Home&location=CTY%7COH%7CCincinnati&ds_rl=1259864&ds_rl=1265127&ds_rl=1259864&gclid=CjwKCAiAiJPkBRAuEiwAEDXZZbqr1u4MqkqUKWi_xhfz52jbIObzoT2cON-3oE3_5W7LNO0zB",
+		"expectedLocation": "South Lake Morton, FL"
+	},
+	"second": {
+		"queryString": "?&kw=3234-NB:G:NAT:S:Nursing:K:E&kwg=N:NM:X:H:X:X:E:nursing%20homes%20near%20me&keyword=nursing%20homes%20near%20me&match=e&device=m&network=g&account=AL.com%20Generic%20-%20US%20-%20Google&campaignid=1687941325&adgroupid=69567877321&ad_id=330774038351&AdPosition=1t1&geo=9058077&distrib=s&targetID=kwd-37174470709&interest=123456789&hl=nursing-homes%7C19%20Nursing%20Home&location=CTY%7COH%7CCincinnati&ds_rl=1259864&ds_rl=1265127&ds_rl=1259864&gclid=CjwKCAiAiJPkBRAuEiwAEDXZZbqr1u4MqkqUKWi_xhfz52jbIObzoT2cON-3oE3_5W7LNO0zB",
+		"expectedLocation": "Cincinnati, OH"
+	},
+	"third": {
+		"queryString": "?&kw=3234-NB:G:NAT:S:Nursing:K:E&kwg=N:NM:X:H:X:X:E:nursing%20homes%20near%20me&keyword=nursing%20homes%20near%20me&match=e&device=m&network=g&account=AL.com%20Generic%20-%20US%20-%20Google&campaignid=1687941325&adgroupid=69567877321&ad_id=330774038351&AdPosition=1t1&geo=9058077&distrib=s&targetID=kwd-37174470709&interest=&hl=nursing-homes%7C19%20Nursing%20Home&location=CTY%7COH%7CCincinnati&ds_rl=1259864&ds_rl=1265127&ds_rl=1259864&gclid=CjwKCAiAiJPkBRAuEiwAEDXZZbqr1u4MqkqUKWi_xhfz52jbIObzoT2cON-3oE3_5W7LNO0zB",
+		"expectedLocation": "Cincinnati, OH"
+	},
+	"fourth": {
+		"queryString": "?&kw=3234-NB:G:NAT:S:Nursing:K:E&kwg=N:NM:X:H:X:X:E:nursing%20homes%20near%20me&keyword=nursing%20homes%20near%20me&match=e&device=m&network=g&account=AL.com%20Generic%20-%20US%20-%20Google&campaignid=1687941325&adgroupid=69567877321&ad_id=330774038351&AdPosition=1t1&geo=9058077&distrib=s&targetID=kwd-37174470709&interest=&hl=nursing-homes%7C19%20Nursing%20Home&location=ThisIsAWrongLocation&ds_rl=1259864&ds_rl=1265127&ds_rl=1259864&gclid=CjwKCAiAiJPkBRAuEiwAEDXZZbqr1u4MqkqUKWi_xhfz52jbIObzoT2cON-3oE3_5W7LNO0zB",
+		"expectedLocation": "St. John the Baptist Parish,  LA"
+	},
+	"fifth": {
+		"queryString": "?&kw=3234-NB:G:NAT:S:Nursing:K:E&kwg=N:NM:X:H:X:X:E:nursing%20homes%20near%20me&keyword=nursing%20homes%20near%20me&match=e&device=m&network=g&account=AL.com%20Generic%20-%20US%20-%20Google&campaignid=1687941325&adgroupid=69567877321&ad_id=330774038351&AdPosition=1t1&geo=9058077&distrib=s&targetID=kwd-37174470709&interest=&hl=nursing-homes%7C19%20Nursing%20Home&location=&ds_rl=1259864&ds_rl=1265127&ds_rl=1259864&gclid=CjwKCAiAiJPkBRAuEiwAEDXZZbqr1u4MqkqUKWi_xhfz52jbIObzoT2cON-3oE3_5W7LNO0zB",
+		"expectedLocation": "St. John the Baptist Parish,  LA"
+	},
+	"sixth": {
+		"queryString": "?&kw=3234-NB:G:NAT:S:Nursing:K:E&kwg=N:NM:X:H:X:X:E:nursing%20homes%20near%20me&keyword=nursing%20homes&match=e&device=m&network=g&account=AL.com%20Generic%20-%20US%20-%20Google&campaignid=1687941325&adgroupid=69567877321&ad_id=330774038351&AdPosition=1t1&geo=9058077&distrib=s&targetID=kwd-37174470709&interest=&hl=nursing-homes%7C19%20Nursing%20Home&location=&ds_rl=1259864&ds_rl=1265127&ds_rl=1259864&gclid=CjwKCAiAiJPkBRAuEiwAEDXZZbqr1u4MqkqUKWi_xhfz52jbIObzoT2cON-3oE3_5W7LNO0zB",
+		"expectedLocation": ""
+	},
+	"septh": {
+		"queryString": "?kw=3234-NB:G:NAT:S:Assisted%20Living:K&kwg=AL:NM:X:X:X:X:E:assisted%20living&keyword=nearest%20assisted%20living&match=e&device=c&network=g&account=AL.com+Generic+-+US+-+Google&campaignid=1640036338&adgroupid=66355759841&ad_id=346681499713&AdPosition=1t3&geo=9058259&distrib=s&targetID=kwd-69785128818&interest=&hl=assisted-living%7c19+%20Assisted%20Living&location=&ds_rl=1259864&ds_rl=1265127&ds_rl=1259864&gclid=EAIaIQobChMI5LGRrLKI5AIVBMZkCh3WIAMOEAAYAyAAEgKTGfD_BwE&gclsrc=aw.ds&kd=",
+		"expectedLocation": "Lake of the Woods County,  MN"
+	},
+	"eighth": {
+		"queryString": "?kw=3234-NB:G:NAT:S:Assisted%20Living:K&kwg=AL:NM:X:X:X:X:E:assisted%20living&keyword=nearest+assisted%20living&match=e&device=c&network=g&account=AL.com+Generic+-+US+-+Google&campaignid=1640036338&adgroupid=66355759841&ad_id=346681499713&AdPosition=1t3&geo=9058259&distrib=s&targetID=kwd-69785128818&interest=&hl=assisted-living%7c19+%20Assisted%20Living&location=&ds_rl=1259864&ds_rl=1265127&ds_rl=1259864&gclid=EAIaIQobChMI5LGRrLKI5AIVBMZkCh3WIAMOEAAYAyAAEgKTGfD_BwE&gclsrc=aw.ds&kd=",
+		"expectedLocation": "Lake of the Woods County,  MN"
+	},
+	"nineth": {
+		"queryString": "?kw=3234-NB:G:NAT:S:Assisted%20Living:K&kwg=AL:NM:X:X:X:X:E:assisted%20living&keyword=assisted%20living&match=e&device=c&network=g&account=AL.com+Generic+-+US+-+Google&campaignid=1640036338&adgroupid=66355759841&ad_id=346681499713&AdPosition=1t3&geo=9058259&distrib=s&targetID=kwd-69785128818&interest=&hl=assisted-living%7c19+%20Assisted%20Living&location=&ds_rl=1259864&ds_rl=1265127&ds_rl=1259864&gclid=EAIaIQobChMI5LGRrLKI5AIVBMZkCh3WIAMOEAAYAyAAEgKTGfD_BwE&gclsrc=aw.ds&kd=nearest",
+		"expectedLocation": "Lake of the Woods County,  MN"
+	}
+}
