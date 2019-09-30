@@ -23,15 +23,34 @@
 //
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+/// <reference types="Cypress" />
 import "cypress-wait-until"
-import { createCipher } from "crypto";
+import { createCipher } from "crypto"
+
+Cypress.Commands.add("validateCommunityBuilder", (url, variant) => {
+	cy.server()
+
+	//This is the post call we are interested in capturing
+	cy.route(
+		"POST",
+		"https://unbounce-test.aplaceformom.com/fsg?pageId=5220db5e-a03b-4fde-afa0-11b52908682e&variant=a&lp-form-submit-method=ajax"
+	).as("communityBuilder")
+
+	cy.get('div.builder-container').should("be.visible");
+
+	cy.wait("@communityBuilder");
+
+	//Assert on XHR
+	cy.get("@communityBuilder").then(function(xhr) {
+		expect(xhr.status).to.eq(200)
+	})
+})
 
 Cypress.Commands.add("navigate", (url, variant) => {
-	
 	let navUrl = url || null
 	let navVariant = variant || null
-	cy.clearLocalStorage();
-	cy.clearCookies();
+	cy.clearLocalStorage()
+	cy.clearCookies()
 	if (navVariant) {
 		cy.visit(`${navUrl}${navVariant}`)
 	} else {
@@ -39,30 +58,44 @@ Cypress.Commands.add("navigate", (url, variant) => {
 	}
 })
 
-Cypress.Commands.add("LogIntoUnbounce", () =>{
+Cypress.Commands.add("LogIntoUnbounce", () => {
 	try {
-		let emailId = "#js_auth_email";
-		let passId = "#js_auth_password";
-		let rememberMe = "#remember-checkbox";
-		let submitBtnId = "#login_btn";
+		let emailId = "#js_auth_email"
+		let passId = "#js_auth_password"
+		let rememberMe = "#remember-checkbox"
+		let submitBtnId = "#login_btn"
 
-		let ubUrl = Cypress.env("ubUrl");
-		let ubUser = Cypress.env("ubUser");
-		let ubPass = Cypress.env("ubPass");
+		let ubUrl = Cypress.env("ubUrl")
+		let ubUser = Cypress.env("ubUser")
+		let ubPass = Cypress.env("ubPass")
 
-		cy.navigate(ubUrl, null);
+		cy.navigate(ubUrl, null)
 
-		cy.get(emailId).should("be.visible").should("be.enabled").as("email").type(ubUser);
-		cy.get(passId).should("be.visible").should("be.enabled").as("pass").type(ubPass);
-		cy.get(submitBtnId).should("be.visible").should("be.enabled").as("submit").click();
+		cy.get(emailId)
+			.should("be.visible")
+			.should("be.enabled")
+			.as("email")
+			.type(ubUser)
+		cy.get(passId)
+			.should("be.visible")
+			.should("be.enabled")
+			.as("pass")
+			.type(ubPass)
+		cy.get(submitBtnId)
+			.should("be.visible")
+			.should("be.enabled")
+			.as("submit")
+			.click()
 
 		//TODO
 		if (false) {
-			cy.get(rememberMe).should("be.visible").should("be.enabled").as("remember");
+			cy.get(rememberMe)
+				.should("be.visible")
+				.should("be.enabled")
+				.as("remember")
 		}
-		
 	} catch (error) {
-		throw error;
+		throw error
 	}
 })
 
