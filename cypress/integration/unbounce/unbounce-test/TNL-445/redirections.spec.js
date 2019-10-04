@@ -28,7 +28,7 @@ describe("Redirections", () => {
 				baseUrl = `${domainData.testPage.url}`
 			});
 			cy.viewport("macbook-15");
-		})
+		});
 
 		it("Select URGENT", () => {
 			cy.navigate(`${baseUrl}the-better-path-selections-v2/`, null)
@@ -42,7 +42,7 @@ describe("Redirections", () => {
             cy.get('div.builder-container').should("not.be.visible");
 
 			cy.url().should("eq", urlUrgent)
-		})
+		});
 
 		it("Select 30 Days", () => {
 
@@ -57,7 +57,7 @@ describe("Redirections", () => {
             cy.validateCommunityBuilder();
 
 			cy.url().should("eq", urlNormal)
-		})
+		});
 
 		it("Select 60 Days", () => {
 
@@ -72,7 +72,7 @@ describe("Redirections", () => {
             cy.validateCommunityBuilder();
 
 			cy.url().should("eq", urlNormal)
-		})
+		});
 
 		it("Select No Rush", () => {
 
@@ -87,7 +87,7 @@ describe("Redirections", () => {
             cy.validateCommunityBuilder();
 
 			cy.url().should("eq", urlNormal)
-		})
+		});
 
 		it("Select No Rush - Shared", () => {
 
@@ -104,7 +104,7 @@ describe("Redirections", () => {
             cy.validateCommunityBuilder();
 
 			cy.url().should("eq", urlNormal)
-		})
+		});
 
 		it("Select No Rush - Private One Bedroom", () => {
 
@@ -121,7 +121,7 @@ describe("Redirections", () => {
             cy.validateCommunityBuilder();
 
 			cy.url().should("eq", urlNormal)
-		})
+		});
 
 		it("Select No Rush - Private Two Bedroom", () => {
 
@@ -138,7 +138,7 @@ describe("Redirections", () => {
             cy.validateCommunityBuilder();
 
 			cy.url().should("eq", urlNormal)
-		})
+		});
 
 		it("Select No Rush - Unsure", () => {
             
@@ -155,7 +155,7 @@ describe("Redirections", () => {
             cy.validateCommunityBuilder();
 
 			cy.url().should("eq", urlNormal)
-		})
+		});
 
 		it("Select No Rush - Standard", () => {
 
@@ -172,7 +172,7 @@ describe("Redirections", () => {
             cy.validateCommunityBuilder();
 
 			cy.url().should("eq", urlNormal)
-		})
+		});
 
 		it("Select No Rush - Luxury", () => {
 
@@ -189,6 +189,6 @@ describe("Redirections", () => {
             cy.validateCommunityBuilder();
 
 			cy.url().should("eq", urlNormal)
-		})
-	})
-})
+		});
+	});
+});

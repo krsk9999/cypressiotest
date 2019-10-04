@@ -1,0 +1,124 @@
+{
+  "stats": {
+    "suites": 2,
+    "tests": 1,
+    "passes": 1,
+    "pending": 0,
+    "failures": 0,
+    "start": "2019-10-04T17:07:10.354Z",
+    "end": "2019-10-04T17:07:20.860Z",
+    "duration": 10506,
+    "testsRegistered": 1,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "cb83c136-d924-4e55-a71c-7c79221dd4fb",
+      "title": "",
+      "fullFile": "",
+      "file": "",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "2de04839-a1f3-40c8-b5c7-a88e55f497ec",
+          "title": "iDot form validations",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [],
+          "suites": [
+            {
+              "uuid": "46de80ce-65b5-41aa-9519-f2a9b47efce4",
+              "title": "Setting up testing data",
+              "fullFile": "",
+              "file": "",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "Local. Simple. Free",
+                  "fullTitle": "iDot form validations Setting up testing data Local. Simple. Free",
+                  "timedOut": null,
+                  "duration": 8277,
+                  "state": "passed",
+                  "speed": "slow",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "var url = domainsData.iDotLocalSimpleFree.url;\nvar variant = domainsData.iDotLocalSimpleFree.variants.a.url;\nvar location = Cypress.env(\"location\");\nvar bodyTag = domainsData.iDotLocalSimpleFree.variants.a.bodyTag;\nvar responseBody;\ncy.server(); //This is the post call we are interested in capturing\ncy.route(\"POST\", \"https://gw.aplaceformom.com/Prod/api/ws3/leads/v1\").as(\"leadSubmitRequest\");\ncy.navigate(url, variant);\ncy.locationStepValidations(url + variant); //cy.get('body.lp-pom-body').invoke('attr','data-pa-sitetype').should('eq', bodyTag)\n//Page Elements Step 1\ncy.get('div.fg-step-1 input[name=\"location\"]').as(\"location\");\ncy.get(\"div.fg-step-1 button\").as(\"submitBtn\");\ncy.get(\"@location\").type(location);\ncy.get(\"@location\").should(\"have.value\", location);\ncy.get(\"@submitBtn\").click(); //Page Elements Step 2\ncy.get(\"div.fg-step-2 div.dropdown-input-container\").first().as(\"timeline\");\ncy.get(\"div.fg-step-2 div.dropdown-input-container.middle-item\").as(\"roomtype\");\ncy.get(\"div.fg-step-2 div.dropdown-input-container\").last().as(\"budget\");\ncy.get(\"div.fg-step-2 button\").as(\"submitBtn\"); //Form Validations Step 2\ncy.get(\"@submitBtn\").last().click();\ncy.get(\"@timeline\").should(\"have.class\", \"error\");\ncy.get(\"@roomtype\").should(\"have.class\", \"error\");\ncy.get(\"@budget\").should(\"have.class\", \"error\");\ncy.url().should(\"eq\", \"\".concat(url).concat(variant));\ncy.get(\"@timeline\").click();\ncy.get(\"@timeline\").first().find(\"ul.dropdown-menu li\").as(\"timelinemenu\");\ncy.get(\"@timelinemenu\").should(\"exist\");\ncy.get(\"@timelinemenu\").first().click();\ncy.get(\"@roomtype\").click();\ncy.get(\"@roomtype\").first().find(\"ul.dropdown-menu li\").as(\"roomtypemenu\");\ncy.get(\"@roomtypemenu\").should(\"exist\");\ncy.get(\"@roomtypemenu\").last().click();\ncy.get(\"@budget\").click();\ncy.get(\"@budget\").first().find(\"ul.dropdown-menu li\").as(\"budgetmenu\");\ncy.get(\"@budgetmenu\").should(\"exist\");\ncy.get(\"@budgetmenu\").last().click();\ncy.get(\"@timeline\").should(\"not.have.class\", \"error\");\ncy.get(\"@roomtype\").should(\"not.have.class\", \"error\");\ncy.get(\"@budget\").should(\"not.have.class\", \"error\");\ncy.get(\"@submitBtn\").click(); //Page Elements Step 3\nvar name = Cypress.env(\"name\");\nvar email = Cypress.env(\"email\");\nvar phone = Cypress.env(\"phone\");\ncy.get('div.fg-step-3 input[name=\"fullName\"]').as(\"name\");\ncy.get('div.fg-step-3 input[name=\"email\"]').as(\"email\");\ncy.get('div.fg-step-3 input[name=\"phoneNumber\"]').as(\"phone\");\ncy.get(\"div.fg-step-3 div.input-container:nth-child(2)\").as(\"namevalidator\");\ncy.get(\"div.fg-step-3 div.input-container:nth-child(3)\").as(\"emailvalidator\");\ncy.get(\"div.fg-step-3 div.input-container:nth-child(4)\").as(\"phonevalidator\");\ncy.get(\"div.fg-step-3 button\").as(\"submitBtn\");\ncy.get(\"@submitBtn\").click();\ncy.get(\"@namevalidator\").should(\"have.class\", \"error\");\ncy.get(\"@emailvalidator\").should(\"have.class\", \"error\");\ncy.get(\"@phonevalidator\").should(\"have.class\", \"error\");\ncy.url().should(\"eq\", \"\".concat(url).concat(variant));\ncy.get(\"@name\").type(name);\ncy.get(\"@name\").should(\"have.value\", name);\ncy.get(\"@email\").type(email);\ncy.get(\"@email\").should(\"have.value\", email);\ncy.get(\"@phone\").type(phone);\ncy.get(\"@phone\").should(\"have.value\", phone);\ncy.get(\"@namevalidator\").should(\"not.have.class\", \"error\");\ncy.get(\"@emailvalidator\").should(\"not.have.class\", \"error\");\ncy.get(\"@phonevalidator\").should(\"not.have.class\", \"error\");\ncy.get(\"@submitBtn\").click();\ncy.wait(\"@leadSubmitRequest\"); //Assert on XHR\ncy.get(\"@leadSubmitRequest\").then(function (xhr) {\n  responseBody = JSON.parse(xhr.response.body);\n  expect(xhr.status).to.eq(201);\n  expect(responseBody.CreativeId).to.eq(\"APFM|DT|Primary|R\");\n  expect(responseBody.SourceId).to.eq(\"5666\");\n  cy.log(responseBody.CustomData);\n});",
+                  "err": {},
+                  "uuid": "983b3192-a032-45e2-9dbc-86eec022e759",
+                  "parentUUID": "46de80ce-65b5-41aa-9519-f2a9b47efce4",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [
+                "983b3192-a032-45e2-9dbc-86eec022e759"
+              ],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 8277,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 2000
+            }
+          ],
+          "passes": [],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "5.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false
+      },
+      "version": "4.1.0"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/report/mochawesome-report",
+        "overwrite": true,
+        "html": true,
+        "json": true,
+        "timestamp": "mmddyyyy_HHMMss"
+      },
+      "version": "4.0.1"
+    }
+  }
+}

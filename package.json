@@ -7,11 +7,15 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "cy:open": "cypress open --env configFile=dev",
     "cy:run": "cypress run --env configFile=dev --record --key ab25a1ec-d69f-44ca-9655-92e6c09f86d5",
-    "debug": "cypress run --env configFile=dev --record --key ab25a1ec-d69f-44ca-9655-92e6c09f86d5"
+    "debug": "cypress run --spec cypress/integration/unbounce/i.aplaceformom.com/formValidations.spec.js --group develop-env --env configFile=dev --record --key ab25a1ec-d69f-44ca-9655-92e6c09f86d5"
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {},
+  "dependencies": {
+    "mocha": "5.2.0",
+    "mochawesome": "^4.1.0",
+    "mochawesome-merge": "^2.0.1"
+  },
   "devDependencies": {
     "@cypress/mocha-teamcity-reporter": "^1.0.0",
     "@types/fs-extra": "^8.0.0",

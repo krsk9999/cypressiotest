@@ -1,4 +1,12 @@
 {
-    "projectId": "38d3fy",
-    "chromeWebSecurity": false
+	"projectId": "38d3fy",
+	"chromeWebSecurity": false,
+	"reporter": "mochawesome",
+	"reporterOptions": {
+		"reportDir": "cypress/report/mochawesome-report",
+		"overwrite": true,
+		"html": true,
+		"json": true,
+		"timestamp": "mmddyyyy_HHMMss"
+	}
 }

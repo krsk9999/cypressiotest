@@ -27,7 +27,42 @@
 import "cypress-wait-until"
 import { createCipher } from "crypto"
 
-Cypress.Commands.add("validateCommunityBuilder", (url, variant) => {
+Cypress.Commands.add("locationStepValidations", (Uri) => {
+	//Page Elements
+	cy.get('div.fg-step-1 input[name="location"]').as("location")
+	cy.get('div.fg-step-1 button').as("submitBtn")
+	cy.get("div.fg-step-1 div.input-container").as("inputContainer")
+
+	//Validate no errors were triggered before submitting a lead
+	cy.get("@inputContainer").should("not.have.class", "error")
+
+	//Click submit without entering required data
+	cy.get("@submitBtn").click()
+
+	//Validate lead was not submitted and fields are marked as required
+	cy.url().should("eq", Uri)
+	cy.get("@inputContainer").should("have.class", "error")
+})
+
+Cypress.Commands.add("selectionsStepValidations", () => {
+	let locationEl = "div.fg-step-1 input[name='location']";
+	let submitBtnEl = "div.fg-step-1 button[type='button']";
+	let locationError = "div.fg-step-1 div.flex-container>div.input-container";
+
+	cy.get(locationError).should("not.have.class","error");
+
+	cy.get(submitBtnEl).as("submitBtn");
+	cy.get(locationEl).as("location");
+
+	cy.get("@submitBtn").click();
+
+	cy.get(locationError).should("have.class","error");
+
+})
+
+Cypress.Commands.add("personalInfoStepValidations", () => {})
+
+Cypress.Commands.add("validateCommunityBuilder", () => {
 	cy.server()
 
 	//This is the post call we are interested in capturing
@@ -36,9 +71,9 @@ Cypress.Commands.add("validateCommunityBuilder", (url, variant) => {
 		"https://unbounce-test.aplaceformom.com/fsg?pageId=5220db5e-a03b-4fde-afa0-11b52908682e&variant=a&lp-form-submit-method=ajax"
 	).as("communityBuilder")
 
-	cy.get('div.builder-container').should("be.visible");
+	cy.get("div.builder-container").should("be.visible")
 
-	cy.wait("@communityBuilder");
+	cy.wait("@communityBuilder")
 
 	//Assert on XHR
 	cy.get("@communityBuilder").then(function(xhr) {
