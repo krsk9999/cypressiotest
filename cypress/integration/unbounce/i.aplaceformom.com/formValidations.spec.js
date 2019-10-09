@@ -145,7 +145,6 @@ describe("iDot form validations", () => {
 				expect(xhr.status).to.eq(201)
 				expect(responseBody.CreativeId).to.eq("APFM|DT|Primary|R")
 				expect(responseBody.SourceId).to.eq("5666")
-				cy.log(responseBody.CustomData)
 			})
 		})
 

@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "cy:open": "cypress open --env configFile=dev",
     "cy:run": "cypress run --env configFile=dev --record --key ab25a1ec-d69f-44ca-9655-92e6c09f86d5",
-    "debug": "cypress run --spec cypress/integration/unbounce/i.aplaceformom.com/formValidations.spec.js --group develop-env --env configFile=dev --record --key ab25a1ec-d69f-44ca-9655-92e6c09f86d5"
+    "debug": "cypress run --browser chrome --spec cypress/integration/unbounce/senioradvisor/m.senioradvisor.com/formValidations.spec.js --env configFile=dev --record --key ab25a1ec-d69f-44ca-9655-92e6c09f86d5"
   },
   "author": "",
   "license": "ISC",

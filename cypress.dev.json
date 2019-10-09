@@ -6,7 +6,7 @@
     "requestTimeout": 10000,
     "responseTimeout": 30000,
 	"env": {
-        "location":"Lake of the Woods County,  MN",
+        "location":"Bellevue, WA",
         "email":"kenneth.ramirez@aplaceformom.com",
         "name":"Kenneth Ramirez Sanchez",
         "phone":"(555) 555-5555",

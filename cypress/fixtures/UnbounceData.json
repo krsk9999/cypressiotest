@@ -4,7 +4,8 @@
 		"variants": {
 			"j": {
 				"url": "j.html",
-				"bodyTag": "i.aplaceformom.com-list-style"
+				"bodyTag": "i.aplaceformom.com-list-style",
+				"isActive": false
 			},
 			"n": {
 				"url": "n.html"
@@ -295,6 +296,20 @@
 				"url": "a.html",
 				"bodyTag": "email-1-1-dinner",
 				"phone": "8883340763"
+			}
+		}
+	},
+	"mDotSA": {
+		"url": "https://m.senioradvisor.com/",
+		"variants": {
+			"a": {
+				"url": "a.html",
+				"bodyTag": "sa-sem-1-1-general-m",
+				"dataPaFormid": "1117.1",
+				"dataPaTechstack": "unbounce",
+				"dataPaFormtype": "sem-sa-m",
+				"sourceId": "5765",
+				"phone": "8666377839"
 			}
 		}
 	}
