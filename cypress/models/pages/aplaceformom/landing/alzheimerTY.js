@@ -1,17 +1,17 @@
-class mDotTY{
+class alzheimerTY{
 
     constructor(){        
-        this.localOptions = "#lp-pom-button-26";  
+        this.localOptions = "#lp-pom-button-80";  
     }
 
     get getlocalOptionsElement(){
         if(this.localOptions){
             return cy.get(this.localOptions).as('locationBtn');
         }else{
-            throw new Error("No selector provided to get a next button element");
+            throw new Error("No selector provided to get the show me my listings button");
         } 
     }
               
 }
 
-export default mDotTY;
+export default alzheimerTY;

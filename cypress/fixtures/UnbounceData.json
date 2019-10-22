@@ -112,16 +112,13 @@
 		"variants": {
 			"e": {
 				"url": "e.html",
-				"bodyTag": "semb-3-1-general-locate"
-			},
-			"a": {
-				"url": "a.html"
-			},
-			"b": {
-				"url": "b.html"
-			},
-			"d": {
-				"url": "d.html"
+				"bodyTag": "semb-3-1-general-locate",
+				"dataPaFormid": "1110",
+				"dataPaTechstack": "unbounce",
+				"dataPaFormtype": "One step",
+				"sourceId": "5688",
+				"phone": "8003715898",
+				"creativeId": "APFM|DT|SEMb|E"
 			}
 		}
 	},
@@ -131,6 +128,7 @@
 			"a": {
 				"url": "a.html",
 				"bodyTag": ""
+
 			},
 			"b": {
 				"url": "b.html",
@@ -310,6 +308,23 @@
 				"dataPaFormtype": "sem-sa-m",
 				"sourceId": "5765",
 				"phone": "8666377839"
+			}
+		}
+	},
+	"landingConsumersAdvocateALZ": {
+		"url": "https://unbounce-test.aplaceformom.com/consumers-advocate-tnl-467/",
+		"variants": {
+			"a": {
+				"url": "a.html",
+				"bodyTag": "affilate-10-1-consadv-alz",
+				"dataPaFormid": "N/P",
+				"dataPaTechstack": "N/P",
+				"dataPaFormtype": "N/P",
+				"sourceId": "5973",
+				"phone": "8557858322",
+				"tyPage": "https://unbounce-test.aplaceformom.com/consumers-advocate-ty-tnl-467/",
+				"touUrl": "https://www.alzheimers.net/terms-of-use/",
+				"ppUrl": "https://www.alzheimers.net/privacy-policy/"
 			}
 		}
 	}
