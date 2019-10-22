@@ -4,5 +4,4 @@ version: 2
      docker:
        - image: circleci/ruby:2.4.1
      steps:
-
        - run: npm run test
