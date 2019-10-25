@@ -12,7 +12,15 @@
 			},
 			"p": {
 				"url": "p.html",
-				"bodyTag": "semu-4-3-general-tbp-three-step"
+				"bodyTag": "semu-4-3-general-tbp-three-step",
+				"dataPaFormid": "1112.1",
+				"dataPaTechstack": "N/P",
+				"dataPaFormtype": "N/P",
+				"sourceId": "5973",
+				"phone": "8557858322",
+				"tyPage": "https://unbounce-test.aplaceformom.com/consumers-advocate-ty-tnl-467/",
+				"touUrl": "https://www.alzheimers.net/terms-of-use/",
+				"ppUrl": "https://www.alzheimers.net/privacy-policy/"
 			}
 		}
 	},"iDotLocalSimpleFree": {
@@ -94,7 +102,15 @@
 		"variants": {
 			"a": {
 				"url": "a.html",
-				"bodyTag": "semu-4-3-general-tbp-three-step"
+				"bodyTag": "semu-4-3-general-tbp-three-step",
+				"dataPaFormid": "1112.2",
+				"dataPaTechstack": "N/P",
+				"dataPaFormtype": "N/P",
+				"sourceId": "5973",
+				"phone": "8557858322",
+				"tyPage": "https://unbounce-test.aplaceformom.com/consumers-advocate-ty-tnl-467/",
+				"touUrl": "https://www.alzheimers.net/terms-of-use/",
+				"ppUrl": "https://www.alzheimers.net/privacy-policy/"
 			}
 		}
 	},
@@ -103,7 +119,15 @@
 		"variants": {
 			"a": {
 				"url": "a.html",
-				"bodyTag": "semu-4-3-general-tbp-three-step"
+				"bodyTag": "semu-4-3-general-tbp-three-step",
+				"dataPaFormid": "1112.3",
+				"dataPaTechstack": "N/P",
+				"dataPaFormtype": "N/P",
+				"sourceId": "5973",
+				"phone": "8557858322",
+				"tyPage": "https://unbounce-test.aplaceformom.com/consumers-advocate-ty-tnl-467/",
+				"touUrl": "https://www.alzheimers.net/terms-of-use/",
+				"ppUrl": "https://www.alzheimers.net/privacy-policy/"
 			}
 		}
 	},
@@ -118,21 +142,28 @@
 				"dataPaFormtype": "One step",
 				"sourceId": "5688",
 				"phone": "8003715898",
-				"creativeId": "APFM|DT|SEMb|E"
+				"creativeId": "APFM|DT|SEMb|E",
+				"touUrl": "https://www.aplaceformom.com/terms-of-use",
+				"ppUrl": "https://www.aplaceformom.com/privacy"
 			}
 		}
 	},
 	"cDotMobile": {
 		"url": "https://c.aplaceformom.com/mobile/",
 		"variants": {
-			"a": {
-				"url": "a.html",
-				"bodyTag": ""
-
-			},
 			"b": {
 				"url": "b.html",
-				"bodyTag": "semb-1-1-general-m"
+				"bodyTag": "semb-1-1-general-m",
+				"dataPaFormid": "1107",
+				"dataPaTechstack": "unbounce",
+				"dataPaFormtype": "sem three step",
+				"sourceId": "5748",
+				"phone": "N/P",
+				"creativeId": "APFM|M|SEMb|B",
+				"touUrl": "https://www.aplaceformom.com/terms-of-use",
+				"ppUrl": "https://www.aplaceformom.com/privacy",
+				"aboutUs": "https://www.aplaceformom.com/about"
+
 			}
 		}
 	},
@@ -141,7 +172,16 @@
 		"variants": {
 			"a": {
 				"url": "a.html",
-				"bodyTag": "semu-1-1-general-m"
+				"bodyTag": "semu-1-1-general-m",
+				"dataPaFormid": "1105",
+				"dataPaTechstack": "unbounce",
+				"dataPaFormtype": "sem three step",
+				"sourceId": "5639",
+				"phone": "8556857542",
+				"creativeId": "",
+				"touUrl": "https://www.aplaceformom.com/terms-of-use",
+				"ppUrl": "https://www.aplaceformom.com/privacy",
+				"aboutUs": "https://www.aplaceformom.com/about"
 			},
 			"g": {
 				"url": "g.html"
@@ -313,6 +353,23 @@
 	},
 	"landingConsumersAdvocateALZ": {
 		"url": "https://unbounce-test.aplaceformom.com/consumers-advocate-tnl-467/",
+		"variants": {
+			"a": {
+				"url": "a.html",
+				"bodyTag": "affilate-10-1-consadv-alz",
+				"dataPaFormid": "N/P",
+				"dataPaTechstack": "N/P",
+				"dataPaFormtype": "N/P",
+				"sourceId": "5973",
+				"phone": "8557858322",
+				"tyPage": "https://unbounce-test.aplaceformom.com/consumers-advocate-ty-tnl-467/",
+				"touUrl": "https://www.alzheimers.net/terms-of-use/",
+				"ppUrl": "https://www.alzheimers.net/privacy-policy/"
+			}
+		}
+	},
+	"test": {
+		"url": "https://unbounce-test.aplaceformom.com/location-api-lambda-test/",
 		"variants": {
 			"a": {
 				"url": "a.html",

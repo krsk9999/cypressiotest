@@ -27,10 +27,10 @@
 import "cypress-wait-until"
 import { createCipher } from "crypto"
 
-Cypress.Commands.add("locationStepValidations", (Uri) => {
+Cypress.Commands.add("locationStepValidations", Uri => {
 	//Page Elements
 	cy.get('div.fg-step-1 input[name="location"]').as("location")
-	cy.get('div.fg-step-1 button').as("submitBtn")
+	cy.get("div.fg-step-1 button").as("submitBtn")
 	cy.get("div.fg-step-1 div.input-container").as("inputContainer")
 
 	//Validate no errors were triggered before submitting a lead
@@ -45,19 +45,18 @@ Cypress.Commands.add("locationStepValidations", (Uri) => {
 })
 
 Cypress.Commands.add("selectionsStepValidations", () => {
-	let locationEl = "div.fg-step-1 input[name='location']";
-	let submitBtnEl = "div.fg-step-1 button[type='button']";
-	let locationError = "div.fg-step-1 div.flex-container>div.input-container";
+	let locationEl = "div.fg-step-1 input[name='location']"
+	let submitBtnEl = "div.fg-step-1 button[type='button']"
+	let locationError = "div.fg-step-1 div.flex-container>div.input-container"
 
-	cy.get(locationError).should("not.have.class","error");
+	cy.get(locationError).should("not.have.class", "error")
 
-	cy.get(submitBtnEl).as("submitBtn");
-	cy.get(locationEl).as("location");
+	cy.get(submitBtnEl).as("submitBtn")
+	cy.get(locationEl).as("location")
 
-	cy.get("@submitBtn").click();
+	cy.get("@submitBtn").click()
 
-	cy.get(locationError).should("have.class","error");
-
+	cy.get(locationError).should("have.class", "error")
 })
 
 Cypress.Commands.add("personalInfoStepValidations", () => {})
@@ -166,5 +165,14 @@ Cypress.Commands.add("singleFormSubmit", () => {
 		cy.getCookie("leadsubmit").should("have.property", "value", "true")
 	} catch (error) {
 		throw error
+	}
+})
+
+Cypress.Commands.add("validateGoogleClientId", xhrResponseJson => {
+	if (xhrResponseJson.CustomData[0].Key == "GoogleClientId") {
+		expect(xhrResponseJson.CustomData[0].Value).to.not.equal(1)
+		expect(xhrResponseJson.CustomData[0].Value).to.not.equal("")
+	}else{
+		expect(xhrResponseJson.CustomData[0].Key).to.equal('GoogleClientId')
 	}
 })

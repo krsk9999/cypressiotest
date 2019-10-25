@@ -114,7 +114,7 @@ describe("m.senioradvisor.com", () => {
 			})
 
 			tyPage = new mDotTYSA()
-			cy.wait(2000)
+
 			tyPage.getlocalOptionsElement.click();
 					
 			cy.url().should("contain","bellevue-wa")
