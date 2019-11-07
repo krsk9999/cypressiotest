@@ -17,6 +17,8 @@ describe("cDot main form validations", () => {
 		let tyPage;
 		let touUrl;
 		let ppUrl;
+		let navigationUrl;
+		let dynamicLocationData;
 
 		//ENV Variables
 		let location = Cypress.env("location") || "New York, NY";
@@ -37,7 +39,12 @@ describe("cDot main form validations", () => {
 				dataPaTechStack = domainsData.variants.e.dataPaTechstack;
 				touUrl = domainsData.variants.e.touUrl;
 				ppUrl = domainsData.variants.e.ppUrl;
+				navigationUrl = `${url}${variant}`;
 			});
+
+			cy.fixture("dynamicLocations.json").then(d => {
+				dynamicLocationData = d
+			})
 
 			mainPage = new cDot();
 			tyPage = new cDotTY();
@@ -162,6 +169,111 @@ describe("cDot main form validations", () => {
 			cy.get(`a[href="clkn/https/www.aplaceformom.com/privacy"]`).click();
 
 			cy.url().should("eq", ppUrl);
+		});
+
+		it("Validate Dynamic Locations First Scenario variant a", () => {
+			//URls for each of the 9 scenarios of the Dynamic Locations validations
+			let first = `${navigationUrl}${dynamicLocationData.first.queryString}`;
+			
+			//Expected Values
+			let firstLocation = dynamicLocationData.first.expectedLocation;
+			cy.navigate(first, null);
+			cy.get('#location_identifier').should("have.value", firstLocation);
+		});
+
+		it("Validate Dynamic Locations Second Scenario variant a", () => {
+			//URls for each of the 9 scenarios of the Dynamic Locations validations
+			let second = `${navigationUrl}${dynamicLocationData.second.queryString}`;
+			
+			//Expected Values
+			let secondLocation = dynamicLocationData.second.expectedLocation;
+
+			cy.navigate(second, null);
+			cy.get('#location_identifier').should("have.value", secondLocation);
+			
+		});
+
+		it("Validate Dynamic Locations Third Scenario variant a", () => {
+			//URls for each of the 9 scenarios of the Dynamic Locations validations
+			let third = `${navigationUrl}${dynamicLocationData.third.queryString}`;
+			
+			//Expected Values
+			let thirdLocation = dynamicLocationData.third.expectedLocation;
+
+			cy.navigate(third, null);
+			cy.get('#location_identifier').should("have.value", thirdLocation);
+			
+		});
+
+		it("Validate Dynamic Locations Fourth Scenario variant a", () => {
+			//URls for each of the 9 scenarios of the Dynamic Locations validations
+			let fourth = `${navigationUrl}${dynamicLocationData.fourth.queryString}`;
+			
+			//Expected Values
+			let fourthLocation = dynamicLocationData.fourth.expectedLocation;
+
+			cy.navigate(fourth, null);
+			cy.get('#location_identifier').should("have.value", fourthLocation);
+			
+		});
+
+		it("Validate Dynamic Locations Fifth Scenario variant a", () => {
+			//URls for each of the 9 scenarios of the Dynamic Locations validations
+			let fifth = `${navigationUrl}${dynamicLocationData.fifth.queryString}`;
+			
+			//Expected Values
+			let fifthLocation = dynamicLocationData.fifth.expectedLocation;
+
+			cy.navigate(fifth, null);
+			cy.get('#location_identifier').should("have.value", fifthLocation);
+			
+		});
+
+		it("Validate Dynamic Locations Sixth Scenario variant a", () => {
+			//URls for each of the 9 scenarios of the Dynamic Locations validations
+			let sixth = `${navigationUrl}${dynamicLocationData.sixth.queryString}`;
+			
+			//Expected Values
+			let sixthLocation = dynamicLocationData.sixth.expectedLocation;
+
+			cy.navigate(sixth, null);
+			cy.get('#location_identifier').should("have.value", sixthLocation);
+			
+		});
+
+		it("Validate Dynamic Locations Septh Scenario variant a", () => {
+			//URls for each of the 9 scenarios of the Dynamic Locations validations
+			let septh = `${navigationUrl}${dynamicLocationData.septh.queryString}`;
+			
+			//Expected Values
+			let septhLocation = dynamicLocationData.septh.expectedLocation;
+
+			cy.navigate(septh, null);
+			cy.get('#location_identifier').should("have.value", septhLocation);
+			
+		});
+
+		it("Validate Dynamic Locations Eighth Scenario variant a", () => {
+			//URls for each of the 9 scenarios of the Dynamic Locations validations
+			let eighth = `${navigationUrl}${dynamicLocationData.eighth.queryString}`;
+			
+			//Expected Values
+			let eighthLocation = dynamicLocationData.eighth.expectedLocation;
+
+			cy.navigate(eighth, null);
+			cy.get('#location_identifier').should("have.value", eighthLocation);
+			
+		});
+
+		it("Validate Dynamic Locations Nineth Scenario variant a", () => {
+			//URls for each of the 9 scenarios of the Dynamic Locations validations
+			let nineth = `${navigationUrl}${dynamicLocationData.nineth.queryString}`;
+			
+			//Expected Values
+			let ninethLocation = dynamicLocationData.nineth.expectedLocation;
+
+			cy.navigate(nineth, null);
+			cy.get('#location_identifier').should("have.value", ninethLocation);
 		});
 	});
 });

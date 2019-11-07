@@ -1,7 +1,3 @@
-/// <reference types="Cypress" />
-import { sep } from "path"
-import { isRegExp } from "util"
-
 describe("Redirections", () => {
 	context("Setting up testing data", () => {
 		it("testing", () => {

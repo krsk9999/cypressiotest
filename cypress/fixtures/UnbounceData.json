@@ -384,5 +384,22 @@
 				"ppUrl": "https://www.alzheimers.net/privacy-policy/"
 			}
 		}
+	},
+	"cDotJoanTBP": {
+		"url": "https://c.aplaceformom.com/",
+		"variants": {
+			"m": {
+				"url": "m.html",
+				"bodyTag": "semb-5-1-general-four-step",
+				"dataPaFormid": "1121.1",
+				"dataPaTechstack": "Unbounce",
+				"dataPaFormtype": "sem-b four step tbp - step 1",
+				"sourceId": "5688",
+				"phone": "8007690509",
+				"tyPage": "https://unbounce-test.aplaceformom.com/consumers-advocate-ty-tnl-467/",
+				"touUrl": "https://www.alzheimers.net/terms-of-use/",
+				"ppUrl": "https://www.aplaceformom.com/privacy"
+			}
+		}
 	}
 }
