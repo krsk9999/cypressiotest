@@ -351,6 +351,21 @@
 			}
 		}
 	},
+	"locateDotSA": {
+		"url": "https://locate.senioradvisor.com/",
+		"variants": {
+			"a": {
+				"url": "a.html",
+				"bodyTag": "sa-sem-2-1-general-dt",
+				"dataPaFormid": "1118.1",
+				"dataPaTechstack": "unbounce",
+				"dataPaFormtype": "sem-sa-dt",
+				"sourceId": "5763",
+				"phone": "8663330104",
+				"ppUrl": "https://www.senioradvisor.com/about/privacy-policy"
+			}
+		}
+	},
 	"landingConsumersAdvocateALZ": {
 		"url": "https://unbounce-test.aplaceformom.com/consumers-advocate-tnl-467/",
 		"variants": {

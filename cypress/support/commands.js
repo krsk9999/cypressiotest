@@ -94,41 +94,41 @@ Cypress.Commands.add("navigate", (url, variant) => {
 
 Cypress.Commands.add("LogIntoUnbounce", () => {
 	try {
-		let emailId = "#js_auth_email"
-		let passId = "#js_auth_password"
-		let rememberMe = "#remember-checkbox"
-		let submitBtnId = "#login_btn"
+			let emailId = "#js_auth_email";
+			let passId = "#js_auth_password";
+			let rememberMe = "#remember-checkbox";
+			let submitBtnId = "#login_btn";
 
-		let ubUrl = Cypress.env("ubUrl")
-		let ubUser = Cypress.env("ubUser")
-		let ubPass = Cypress.env("ubPass")
+			let ubUrl = Cypress.env("ubUrl");
+			let ubUser = Cypress.env("ubUser");
+			let ubPass = Cypress.env("ubPass");
 
-		cy.navigate(ubUrl, null)
+			cy.navigate(ubUrl, null);
 
-		cy.get(emailId)
-			.should("be.visible")
-			.should("be.enabled")
-			.as("email")
-			.type(ubUser)
-		cy.get(passId)
-			.should("be.visible")
-			.should("be.enabled")
-			.as("pass")
-			.type(ubPass)
-		cy.get(submitBtnId)
-			.should("be.visible")
-			.should("be.enabled")
-			.as("submit")
-			.click()
-
-		//TODO
-		if (false) {
-			cy.get(rememberMe)
+			cy.get(emailId)
 				.should("be.visible")
 				.should("be.enabled")
-				.as("remember")
-		}
-	} catch (error) {
+				.as("email")
+				.type(ubUser);
+			cy.get(passId)
+				.should("be.visible")
+				.should("be.enabled")
+				.as("pass")
+				.type(ubPass);
+			cy.get(submitBtnId)
+				.should("be.visible")
+				.should("be.enabled")
+				.as("submit")
+				.click();
+
+			//TODO
+			if (false) {
+				cy.get(rememberMe)
+					.should("be.visible")
+					.should("be.enabled")
+					.as("remember");
+			}
+		} catch (error) {
 		throw error
 	}
 })

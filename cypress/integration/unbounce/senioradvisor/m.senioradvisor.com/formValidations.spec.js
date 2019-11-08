@@ -1,6 +1,9 @@
 import mDotSA from "../../../../models/pages/senioradvisor/mDot.js"
 import mDotTYSA from "../../../../models/pages/senioradvisor/mDotTY.js"
 
+var moment = require('moment');
+moment().format();
+
 describe("m.senioradvisor.com", () => {
 	context("Form Validations and Lead submissions", () => {
 		let domainsData
@@ -10,7 +13,9 @@ describe("m.senioradvisor.com", () => {
 		let location = Cypress.env("location");
 		let name = Cypress.env("name");
 		let phone = Cypress.env("phone");
-		let email = Cypress.env("email");
+		let dateF = moment();
+		console.log(dateF.valueOf());
+		let email = `automation${dateF.valueOf()}@aplaceformom.com` || Cypress.env("email");
 
 		before(() => {
 			cy.fixture("UnbounceData.json").then(d => {
@@ -119,6 +124,7 @@ describe("m.senioradvisor.com", () => {
 					
 			cy.url().should("contain","bellevue-wa")
 			//TODO - Add Unlock Pricing validations
+			cy.getCookie("logged_in").should("have.property", "value", "true");
 
 		})
 
