@@ -21,7 +21,7 @@
     "@cypress/mocha-teamcity-reporter": "^1.0.0",
     "@types/fs-extra": "^8.0.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
-    "cypress": "^3.6.0",
+    "cypress": "^3.6.1",
     "cypress-image-snapshot": "^3.1.1",
     "cypress-wait-until": "^1.3.0",
     "moment": "^2.24.0",
