@@ -58,7 +58,7 @@ describe("locate.senioradvisor.com", () => {
 			cy.viewport("macbook-15");
 		});
 
-		it("Fields are required variant 'a'", () => {
+		it("Validate login after submit a Lead - Variant 'a'", () => {
 			cy.server();
 
 			//This is the post call we are interested in capturing
