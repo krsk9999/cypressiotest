@@ -2,6 +2,7 @@ node_modules
 videos
 videos/**
 **/**/yarn.lock
-cypress/report/*
+cypress/report/
+cypress/report/**
 out/*
 out/
