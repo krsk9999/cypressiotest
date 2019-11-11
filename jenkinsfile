@@ -11,7 +11,7 @@ pipeline {
         }
         stage('e2e Tests') {
             steps {
-                bat 'npm run cy:debug'
+                bat 'npm run debug'
             }
         }
 
