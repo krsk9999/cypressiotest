@@ -1,11 +1,11 @@
-import locateDotSA from "../../../../models/pages/senioradvisor/mDot.js";
-import locateDotTYSA from "../../../../models/pages/senioradvisor/mDotTY.js";
+import locateDotSA from '../../../../models/pages/senioradvisor/mDot.js';
+import locateDotTYSA from '../../../../models/pages/senioradvisor/mDotTY.js';
 
-var moment = require("moment");
+var moment = require('moment');
 moment().format();
 
-describe("locate.senioradvisor.com", () => {
-	context("Form Validations and Lead submissions", () => {
+describe('locate.senioradvisor.com', () => {
+	context('Form Validations and Lead submissions', () => {
 		let domainsData;
 		let url;
 		let variant;
@@ -23,18 +23,18 @@ describe("locate.senioradvisor.com", () => {
 		let ppUrl;
 
 		//Variables
-		let location = Cypress.env("location") || "New York, NY";
+		let location = Cypress.env('location') || 'New York, NY';
 		let dateF = moment();
-		let name = `testdonotcall${dateF.valueOf()}`||Cypress.env("name");
+		let name = `testdonotcall${dateF.valueOf()}` || Cypress.env('name');
 		let email =
 			`automation${dateF.valueOf()}@aplaceformom.com` ||
-			Cypress.env("email");
-		let phone = Cypress.env("phone") || "(555) 555-5555";
+			Cypress.env('email');
+		let phone = Cypress.env('phone') || '(555) 555-5555';
 
 		before(() => {
-			cy.clearLocalStorage()
-    		cy.clearCookies()
-			cy.fixture("UnbounceData.json").then(d => {
+			cy.clearLocalStorage();
+			cy.clearCookies();
+			cy.fixture('UnbounceData.json').then(d => {
 				domainsData = d.locateDotSA;
 				url = domainsData.url;
 				variant = domainsData.variants.a.url;
@@ -48,14 +48,19 @@ describe("locate.senioradvisor.com", () => {
 				pagePhone = domainsData.variants.a.phone;
 				console.log(domainsData);
 			});
-			cy.fixture("dynamicLocations.json").then(d => {
+			cy.fixture('dynamicLocations.json').then(d => {
 				dynamicLocationData = d;
 			});
 			mainPage = new locateDotSA();
 		});
 
 		beforeEach(() => {
-			cy.viewport("macbook-15");
+			cy.viewport('macbook-15');
+		});
+
+		afterEach(() => {
+			cy.clearLocalStorage();
+			cy.clearCookies();
 		});
 
 		it("Validate login after submit a Lead - Variant 'a'", () => {
@@ -63,79 +68,81 @@ describe("locate.senioradvisor.com", () => {
 
 			//This is the post call we are interested in capturing
 			cy.route(
-				"POST",
-				"https://gw.aplaceformom.com/Prod/api/ws3/leads/v1"
-			).as("leadSubmitRequest");
+				'POST',
+				'https://gw.aplaceformom.com/Prod/api/ws3/leads/v1'
+			).as('leadSubmitRequest');
 
-			mainPage.visit(url+variant);
+			mainPage.visit(url + variant);
 
 			//Phone number
-			cy.get(`a[href="clkn/tel/${pagePhone}"]`).should("exist");
+			cy.get(`a[href="clkn/tel/${pagePhone}"]`).should('exist');
 
-			cy.get("a#lp-pom-button-12 span")
-				.invoke("text")
+			cy.get('a#lp-pom-button-12 span')
+				.invoke('text')
 				.then(text => {
 					expect(
 						text
-							.replace(/[^\w\s]/gi, "")
-							.replace(/\n/g, "")
-							.replace(/\s/g, "")
+							.replace(/[^\w\s]/gi, '')
+							.replace(/\n/g, '')
+							.replace(/\s/g, '')
 					).to.eq(pagePhone);
 				});
 
 			//FDE Data validations
 			//TODO - Add Body Data Attribute Validation
-			cy.get("form")
-				.invoke("attr", "data-pa-formid")
-				.should("eq", dataPaFormId);
-			cy.get("form")
-				.invoke("attr", "data-pa-formtype")
-				.should("eq", dataPaFormType);
-			cy.get("body")
-				.invoke("attr", "data-pa-sitetype")
-				.should("eq", bodyTag);
+			cy.get('form')
+				.invoke('attr', 'data-pa-formid')
+				.should('eq', dataPaFormId);
+			cy.get('form')
+				.invoke('attr', 'data-pa-formtype')
+				.should('eq', dataPaFormType);
+			cy.get('body')
+				.invoke('attr', 'data-pa-sitetype')
+				.should('eq', bodyTag);
 
 			//First Step - Location Step
 
-			mainPage.getLocationElement.should("not.have.class", "error");
-			mainPage.getEmailElement.should("not.have.class", "error");
+			mainPage.getLocationElement.should('not.have.class', 'error');
+			mainPage.getEmailElement.should('not.have.class', 'error');
 
+			cy.get('#lp-pom-button-20')
+				.as('nextBtn')
+				.click();
 
-			cy.get('#lp-pom-button-20').as("nextBtn").click();
-
-			mainPage.getLocationElement.should("have.class", "error");
-			mainPage.getEmailElement.should("have.class", "error");
+			mainPage.getLocationElement.should('have.class', 'error');
+			mainPage.getEmailElement.should('have.class', 'error');
 
 			mainPage.getLocationElement
 				.type(location)
-				.should("have.value", location);
-			mainPage.getEmailElement
-				.type(email)
-				.should("have.value", email);
+				.should('have.value', location);
+			mainPage.getEmailElement.type(email).should('have.value', email);
 
-			cy.get("@nextBtn").click();
+			cy.get('@nextBtn').click();
 
 			//Second Step - Email Step
 
-			mainPage.getNameElement.should("not.have.class", "error");
-			mainPage.getPhoneElement.should("not.have.class", "error");
+			mainPage.getNameElement.should('not.have.class', 'error');
+			mainPage.getPhoneElement.should('not.have.class', 'error');
 
 			mainPage.getSubmitElement.click();
 
-			mainPage.getNameElement.should("have.class", "error");
-			mainPage.getPhoneElement.should("have.class", "error");
+			mainPage.getNameElement.should('have.class', 'error');
+			mainPage.getPhoneElement.should('have.class', 'error');
 
-			mainPage.getNameElement.type(name).should("have.value", name);
-			mainPage.getPhoneElement.type(phone).should("have.value", phone);
+			mainPage.getNameElement.type(name).should('have.value', name);
+			mainPage.getPhoneElement.type(phone).should('have.value', phone);
 
 			mainPage.getSubmitElement.click();
 
-			cy.url().should("eq", "https://locate.senioradvisor.com/thank-you/");
+			cy.url().should(
+				'eq',
+				'https://locate.senioradvisor.com/thank-you/'
+			);
 
-			cy.wait("@leadSubmitRequest");
+			cy.wait('@leadSubmitRequest');
 
 			//Assert on XHR
-			cy.get("@leadSubmitRequest").then(function(xhr) {
+			cy.get('@leadSubmitRequest').then(function(xhr) {
 				responseBody = JSON.parse(xhr.response.body);
 				expect(xhr.status).to.eq(201);
 				//expect(responseBody.CreativeId).to.eq("APFM|DT|Primary|R")
@@ -146,19 +153,19 @@ describe("locate.senioradvisor.com", () => {
 
 			tyPage.getlocalOptionsElement.click();
 
-			cy.url().should("contain", "bellevue-wa");
+			cy.url().should('contain', 'bellevue-wa');
 			//TODO - Add Unlock Pricing validations
-			cy.getCookie("logged_in").should("have.property", "value", "true");
+			cy.getCookie('logged_in').should('have.property', 'value', 'true');
 
 			cy.get('.welcome').click();
 
-			cy.get('.dropdown-menu a[href*="/users/edit."]').click()
+			cy.get('.dropdown-menu a[href*="/users/edit."]').click();
 
-			cy.get('#user_first_name').should("have.value",name);
+			cy.get('#user_first_name').should('have.value', name);
 
-			cy.get('#user_email').should("have.value",email);
+			cy.get('#user_email').should('have.value', email);
 		});
-/*
+		/*
 		it("Validate Dynamic Locations First Scenario variant a", () => {
 			//URls for each of the 9 scenarios of the Dynamic Locations validations
 			let first = `${navigationUrl}${dynamicLocationData.first.queryString}`;

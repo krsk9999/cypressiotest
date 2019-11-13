@@ -1,265 +1,278 @@
-import mDotSA from "../../../../models/pages/senioradvisor/mDot.js"
-import mDotTYSA from "../../../../models/pages/senioradvisor/mDotTY.js"
+import mDotSA from '../../../../models/pages/senioradvisor/mDot.js';
+import mDotTYSA from '../../../../models/pages/senioradvisor/mDotTY.js';
 
 var moment = require('moment');
 moment().format();
 
-describe("m.senioradvisor.com", () => {
-	context("Form Validations and Lead submissions", () => {
-		let domainsData
-		let dynamicLocationData
-		let mobilePage
-		let tyPage
-		let location = Cypress.env("location");
-		let name = Cypress.env("name");
-		let phone = Cypress.env("phone");
+describe('m.senioradvisor.com', () => {
+	context('Form Validations and Lead submissions', () => {
+		let domainsData;
+		let dynamicLocationData;
+		let mobilePage;
+		let tyPage;
+		let location = Cypress.env('location');
+		let name = Cypress.env('name');
+		let phone = Cypress.env('phone');
 		let dateF = moment();
 		console.log(dateF.valueOf());
-		let email = `automation${dateF.valueOf()}@aplaceformom.com` || Cypress.env("email");
+		let email =
+			`automation${dateF.valueOf()}@aplaceformom.com` ||
+			Cypress.env('email');
 
 		before(() => {
-			cy.fixture("UnbounceData.json").then(d => {
-				domainsData = d
-			})
-			cy.fixture("dynamicLocations.json").then(d => {
-				dynamicLocationData = d
-			})
-			
-		})
+			cy.fixture('UnbounceData.json').then(d => {
+				domainsData = d;
+			});
+			cy.fixture('dynamicLocations.json').then(d => {
+				dynamicLocationData = d;
+			});
+		});
 
 		beforeEach(() => {
-			cy.viewport("iphone-6")
-		})
+			cy.viewport('iphone-6');
+		});
 
-		it("Fields are required variant 'a'", () => {			
-			let url = domainsData.mDotSA.url
-			let variant = domainsData.mDotSA.variants.a.url
-			let pagePhone = domainsData.mDotSA.variants.a.phone
-			let fullUrl = url + variant
-			let bodyTag = domainsData.mDotSA.variants.a.bodyTag
-			let dpfi = domainsData.mDotSA.variants.a.dataPaFormid
-			let dpft = domainsData.mDotSA.variants.a.dataPaFormtype
-			let responseBody
+		afterEach(() => {
+			cy.clearLocalStorage();
+			cy.clearCookies();
+		});
 
-			cy.server()
+		it("Fields are required variant 'a'", () => {
+			let url = domainsData.mDotSA.url;
+			let variant = domainsData.mDotSA.variants.a.url;
+			let pagePhone = domainsData.mDotSA.variants.a.phone;
+			let fullUrl = url + variant;
+			let bodyTag = domainsData.mDotSA.variants.a.bodyTag;
+			let dpfi = domainsData.mDotSA.variants.a.dataPaFormid;
+			let dpft = domainsData.mDotSA.variants.a.dataPaFormtype;
+			let responseBody;
+
+			cy.server();
 
 			//This is the post call we are interested in capturing
 			cy.route(
-				"POST",
-				"https://gw.aplaceformom.com/Prod/api/ws3/leads/v1"
-			).as("leadSubmitRequest")
+				'POST',
+				'https://gw.aplaceformom.com/Prod/api/ws3/leads/v1'
+			).as('leadSubmitRequest');
 
-			mobilePage = new mDotSA()
-			mobilePage.visit(fullUrl)
+			mobilePage = new mDotSA();
+			mobilePage.visit(fullUrl);
 
 			//Phone number
-			cy.get(`a[href="clkn/tel/8666377839"]`).should("exist")
+			cy.get(`a[href="clkn/tel/8666377839"]`).should('exist');
 
-			cy.get(".lp-positioned-content #lp-pom-button-71")
+			cy.get('.lp-positioned-content #lp-pom-button-71')
 				.should('have.attr', 'href')
 				.then(text => {
-					expect(text).to.contain(pagePhone)
-				})
+					expect(text).to.contain(pagePhone);
+				});
 
 			//FDE Data validations
 			//TODO - Add Body Data Attribute Validation
-			cy.get('form').invoke('attr','data-pa-formid').should('eq',dpfi)
-			cy.get('form').invoke('attr','data-pa-formtype').should('eq',dpft)
-			cy.get('body').invoke('attr','data-pa-sitetype').should('eq',bodyTag)
+			cy.get('form')
+				.invoke('attr', 'data-pa-formid')
+				.should('eq', dpfi);
+			cy.get('form')
+				.invoke('attr', 'data-pa-formtype')
+				.should('eq', dpft);
+			cy.get('body')
+				.invoke('attr', 'data-pa-sitetype')
+				.should('eq', bodyTag);
 
-			//First Step - Location Step 
-			
-			mobilePage.getLocationElement.should("not.have.class", "error")
+			//First Step - Location Step
 
-			mobilePage.getNextElement.click()
-
-			mobilePage.getLocationElement.should("have.class", "error")
-
-			mobilePage.getLocationElement.type(location).should("have.value",location)
-	
-			mobilePage.getNextElement.click()
-
-			//Second Step - Email Step 
-
-			mobilePage.getEmailElement.should("not.have.class","error")
+			mobilePage.getLocationElement.should('not.have.class', 'error');
 
 			mobilePage.getNextElement.click();
 
-			mobilePage.getEmailElement.should("have.class", "error")
+			mobilePage.getLocationElement.should('have.class', 'error');
 
-			mobilePage.getEmailElement.type(email).should("have.value",email)
-	
-			mobilePage.getNextElement.click()
+			mobilePage.getLocationElement
+				.type(location)
+				.should('have.value', location);
 
-			//Third Step - Fullname and Phone Step 
+			mobilePage.getNextElement.click();
 
-			mobilePage.getNameElement.should("not.have.class","error")
-			mobilePage.getPhoneElement.should("not.have.class","error")
+			//Second Step - Email Step
+
+			mobilePage.getEmailElement.should('not.have.class', 'error');
+
+			mobilePage.getNextElement.click();
+
+			mobilePage.getEmailElement.should('have.class', 'error');
+
+			mobilePage.getEmailElement.type(email).should('have.value', email);
+
+			mobilePage.getNextElement.click();
+
+			//Third Step - Fullname and Phone Step
+
+			mobilePage.getNameElement.should('not.have.class', 'error');
+			mobilePage.getPhoneElement.should('not.have.class', 'error');
 
 			mobilePage.getSubmitElement.click();
 
-			mobilePage.getNameElement.should("have.class","error")
-			mobilePage.getPhoneElement.should("have.class","error")
+			mobilePage.getNameElement.should('have.class', 'error');
+			mobilePage.getPhoneElement.should('have.class', 'error');
 
-			mobilePage.getNameElement.type(name).should("have.value",name)
-			mobilePage.getPhoneElement.type(phone).should("have.value",phone)
-				
-			mobilePage.getSubmitElement.click();			
+			mobilePage.getNameElement.type(name).should('have.value', name);
+			mobilePage.getPhoneElement.type(phone).should('have.value', phone);
 
-			cy.url().should("eq", "https://m.senioradvisor.com/thank-you/")
-			
-			cy.wait("@leadSubmitRequest")
+			mobilePage.getSubmitElement.click();
+
+			cy.url().should('eq', 'https://m.senioradvisor.com/thank-you/');
+
+			cy.wait('@leadSubmitRequest');
 
 			//Assert on XHR
-			cy.get("@leadSubmitRequest").then(function(xhr) {
-				responseBody = JSON.parse(xhr.response.body)
-				expect(xhr.status).to.eq(201)
+			cy.get('@leadSubmitRequest').then(function(xhr) {
+				responseBody = JSON.parse(xhr.response.body);
+				expect(xhr.status).to.eq(201);
 				//expect(responseBody.CreativeId).to.eq("APFM|DT|Primary|R")
-				expect(responseBody.SourceId).to.eq("5765")
-			})
+				expect(responseBody.SourceId).to.eq('5765');
+			});
 
-			tyPage = new mDotTYSA()
+			tyPage = new mDotTYSA();
 
 			tyPage.getlocalOptionsElement.click();
-					
-			cy.url().should("contain","bellevue-wa")
+
+			cy.url().should('contain', 'bellevue-wa');
 			//TODO - Add Unlock Pricing validations
-			cy.getCookie("logged_in").should("have.property", "value", "true");
+			cy.getCookie('logged_in').should('have.property', 'value', 'true');
+		});
 
-		})
-
-		it("Validate Dynamic Locations First Scenario variant a", () => {
-			let url = domainsData.mDotSA.url
-			let variant = domainsData.mDotSA.variants.a.url
-			let navigationUrl = `${url}${variant}`
-
-			//URls for each of the 9 scenarios of the Dynamic Locations validations
-			let first = `${navigationUrl}${dynamicLocationData.first.queryString}`
-
-			//Expected Values
-			let firstLocation = dynamicLocationData.first.expectedLocation
-			cy.navigate(first, null)
-			cy.get("#location_identifier").should("have.value", firstLocation)
-		})
-
-		it("Validate Dynamic Locations Second Scenario variant a", () => {
-			let url = domainsData.mDotSA.url
-			let variant = domainsData.mDotSA.variants.a.url
-			let navigationUrl = `${url}${variant}`
+		it('Validate Dynamic Locations First Scenario variant a', () => {
+			let url = domainsData.mDotSA.url;
+			let variant = domainsData.mDotSA.variants.a.url;
+			let navigationUrl = `${url}${variant}`;
 
 			//URls for each of the 9 scenarios of the Dynamic Locations validations
-			let second = `${navigationUrl}${dynamicLocationData.second.queryString}`
+			let first = `${navigationUrl}${dynamicLocationData.first.queryString}`;
 
 			//Expected Values
-			let secondLocation = dynamicLocationData.second.expectedLocation
+			let firstLocation = dynamicLocationData.first.expectedLocation;
+			cy.navigate(first, null);
+			cy.get('#location_identifier').should('have.value', firstLocation);
+		});
 
-			cy.navigate(second, null)
-			cy.get("#location_identifier").should("have.value", secondLocation)
-		})
-
-		it("Validate Dynamic Locations Third Scenario variant a", () => {
-			let url = domainsData.mDotSA.url
-			let variant = domainsData.mDotSA.variants.a.url
-			let navigationUrl = `${url}${variant}`
+		it('Validate Dynamic Locations Second Scenario variant a', () => {
+			let url = domainsData.mDotSA.url;
+			let variant = domainsData.mDotSA.variants.a.url;
+			let navigationUrl = `${url}${variant}`;
 
 			//URls for each of the 9 scenarios of the Dynamic Locations validations
-			let third = `${navigationUrl}${dynamicLocationData.third.queryString}`
+			let second = `${navigationUrl}${dynamicLocationData.second.queryString}`;
 
 			//Expected Values
-			let thirdLocation = dynamicLocationData.third.expectedLocation
+			let secondLocation = dynamicLocationData.second.expectedLocation;
 
-			cy.navigate(third, null)
-			cy.get("#location_identifier").should("have.value", thirdLocation)
-		})
+			cy.navigate(second, null);
+			cy.get('#location_identifier').should('have.value', secondLocation);
+		});
 
-		it("Validate Dynamic Locations Fourth Scenario variant a", () => {
-			let url = domainsData.mDotSA.url
-			let variant = domainsData.mDotSA.variants.a.url
-			let navigationUrl = `${url}${variant}`
+		it('Validate Dynamic Locations Third Scenario variant a', () => {
+			let url = domainsData.mDotSA.url;
+			let variant = domainsData.mDotSA.variants.a.url;
+			let navigationUrl = `${url}${variant}`;
 
 			//URls for each of the 9 scenarios of the Dynamic Locations validations
-			let fourth = `${navigationUrl}${dynamicLocationData.fourth.queryString}`
+			let third = `${navigationUrl}${dynamicLocationData.third.queryString}`;
 
 			//Expected Values
-			let fourthLocation = dynamicLocationData.fourth.expectedLocation
+			let thirdLocation = dynamicLocationData.third.expectedLocation;
 
-			cy.navigate(fourth, null)
-			cy.get("#location_identifier").should("have.value", fourthLocation)
-		})
+			cy.navigate(third, null);
+			cy.get('#location_identifier').should('have.value', thirdLocation);
+		});
 
-		it("Validate Dynamic Locations Fifth Scenario variant a", () => {
-			let url = domainsData.mDotSA.url
-			let variant = domainsData.mDotSA.variants.a.url
-			let navigationUrl = `${url}${variant}`
+		it('Validate Dynamic Locations Fourth Scenario variant a', () => {
+			let url = domainsData.mDotSA.url;
+			let variant = domainsData.mDotSA.variants.a.url;
+			let navigationUrl = `${url}${variant}`;
 
 			//URls for each of the 9 scenarios of the Dynamic Locations validations
-			let fifth = `${navigationUrl}${dynamicLocationData.fifth.queryString}`
+			let fourth = `${navigationUrl}${dynamicLocationData.fourth.queryString}`;
 
 			//Expected Values
-			let fifthLocation = dynamicLocationData.fifth.expectedLocation
+			let fourthLocation = dynamicLocationData.fourth.expectedLocation;
 
-			cy.navigate(fifth, null)
-			cy.get("#location_identifier").should("have.value", fifthLocation)
-		})
+			cy.navigate(fourth, null);
+			cy.get('#location_identifier').should('have.value', fourthLocation);
+		});
 
-		it("Validate Dynamic Locations Sixth Scenario variant a", () => {
-			let url = domainsData.mDotSA.url
-			let variant = domainsData.mDotSA.variants.a.url
-			let navigationUrl = `${url}${variant}`
+		it('Validate Dynamic Locations Fifth Scenario variant a', () => {
+			let url = domainsData.mDotSA.url;
+			let variant = domainsData.mDotSA.variants.a.url;
+			let navigationUrl = `${url}${variant}`;
 
 			//URls for each of the 9 scenarios of the Dynamic Locations validations
-			let sixth = `${navigationUrl}${dynamicLocationData.sixth.queryString}`
+			let fifth = `${navigationUrl}${dynamicLocationData.fifth.queryString}`;
 
 			//Expected Values
-			let sixthLocation = dynamicLocationData.sixth.expectedLocation
+			let fifthLocation = dynamicLocationData.fifth.expectedLocation;
 
-			cy.navigate(sixth, null)
-			cy.get("#location_identifier").should("have.value", sixthLocation)
-		})
+			cy.navigate(fifth, null);
+			cy.get('#location_identifier').should('have.value', fifthLocation);
+		});
 
-		it("Validate Dynamic Locations Septh Scenario variant a", () => {
-			let url = domainsData.mDotSA.url
-			let variant = domainsData.mDotSA.variants.a.url
-			let navigationUrl = `${url}${variant}`
+		it('Validate Dynamic Locations Sixth Scenario variant a', () => {
+			let url = domainsData.mDotSA.url;
+			let variant = domainsData.mDotSA.variants.a.url;
+			let navigationUrl = `${url}${variant}`;
 
 			//URls for each of the 9 scenarios of the Dynamic Locations validations
-			let septh = `${navigationUrl}${dynamicLocationData.septh.queryString}`
+			let sixth = `${navigationUrl}${dynamicLocationData.sixth.queryString}`;
 
 			//Expected Values
-			let septhLocation = dynamicLocationData.septh.expectedLocation
+			let sixthLocation = dynamicLocationData.sixth.expectedLocation;
 
-			cy.navigate(septh, null)
-			cy.get("#location_identifier").should("have.value", septhLocation)
-		})
+			cy.navigate(sixth, null);
+			cy.get('#location_identifier').should('have.value', sixthLocation);
+		});
 
-		it("Validate Dynamic Locations Eighth Scenario variant a", () => {
-			let url = domainsData.mDotSA.url
-			let variant = domainsData.mDotSA.variants.a.url
-			let navigationUrl = `${url}${variant}`
+		it('Validate Dynamic Locations Septh Scenario variant a', () => {
+			let url = domainsData.mDotSA.url;
+			let variant = domainsData.mDotSA.variants.a.url;
+			let navigationUrl = `${url}${variant}`;
 
 			//URls for each of the 9 scenarios of the Dynamic Locations validations
-			let eighth = `${navigationUrl}${dynamicLocationData.eighth.queryString}`
+			let septh = `${navigationUrl}${dynamicLocationData.septh.queryString}`;
 
 			//Expected Values
-			let eighthLocation = dynamicLocationData.eighth.expectedLocation
+			let septhLocation = dynamicLocationData.septh.expectedLocation;
 
-			cy.navigate(eighth, null)
-			cy.get("#location_identifier").should("have.value", eighthLocation)
-		})
+			cy.navigate(septh, null);
+			cy.get('#location_identifier').should('have.value', septhLocation);
+		});
 
-		it("Validate Dynamic Locations Nineth Scenario variant a", () => {
-			let url = domainsData.mDotSA.url
-			let variant = domainsData.mDotSA.variants.a.url
-			let navigationUrl = `${url}${variant}`
+		it('Validate Dynamic Locations Eighth Scenario variant a', () => {
+			let url = domainsData.mDotSA.url;
+			let variant = domainsData.mDotSA.variants.a.url;
+			let navigationUrl = `${url}${variant}`;
 
 			//URls for each of the 9 scenarios of the Dynamic Locations validations
-			let nineth = `${navigationUrl}${dynamicLocationData.nineth.queryString}`
+			let eighth = `${navigationUrl}${dynamicLocationData.eighth.queryString}`;
 
 			//Expected Values
-			let ninethLocation = dynamicLocationData.nineth.expectedLocation
+			let eighthLocation = dynamicLocationData.eighth.expectedLocation;
 
-			cy.navigate(nineth, null)
-			cy.get("#location_identifier").should("have.value", ninethLocation)
-		})
-	})
-})
+			cy.navigate(eighth, null);
+			cy.get('#location_identifier').should('have.value', eighthLocation);
+		});
+
+		it('Validate Dynamic Locations Nineth Scenario variant a', () => {
+			let url = domainsData.mDotSA.url;
+			let variant = domainsData.mDotSA.variants.a.url;
+			let navigationUrl = `${url}${variant}`;
+
+			//URls for each of the 9 scenarios of the Dynamic Locations validations
+			let nineth = `${navigationUrl}${dynamicLocationData.nineth.queryString}`;
+
+			//Expected Values
+			let ninethLocation = dynamicLocationData.nineth.expectedLocation;
+
+			cy.navigate(nineth, null);
+			cy.get('#location_identifier').should('have.value', ninethLocation);
+		});
+	});
+});
