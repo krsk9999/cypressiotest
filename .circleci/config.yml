@@ -1,9 +1,22 @@
 version: 2.1
 orbs:
-  cypress: cypress-io/cypress@1.13.0
+  cypress: cypress-io/cypress@1
+executors:
+  base10:
+    docker:
+      - image: 'cypress/base:10'
+    environment:
+      CYPRESS_RECORD_KEY: 'ab25a1ec-d69f-44ca-9655-92e6c09f86d5'
 workflows:
   build:
     jobs:
       # record Cypress tests on the Dashboard
       - cypress/run:
+          executor: base10
+          browser: chrome
           record: true
+          store_artifacts: true
+
+          post-steps:
+            - store_artifacts:
+                path: mochawesome-report
