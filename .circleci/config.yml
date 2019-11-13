@@ -11,6 +11,7 @@ workflows:
   build:
     jobs:
       # record Cypress tests on the Dashboard
+      - cypress-io/install
       - cypress-io/run:
           executor: base10
           browser: chrome
