@@ -1,6 +1,6 @@
 version: 2.1
 orbs:
-  cypress: cypress-io/cypress@1
+  cypress-io: cypress-io/cypress@1
 executors:
   base10:
     docker:
@@ -11,7 +11,7 @@ workflows:
   build:
     jobs:
       # record Cypress tests on the Dashboard
-      - cypress/run:
+      - cypress-io/run:
           executor: base10
           browser: chrome
           record: true
