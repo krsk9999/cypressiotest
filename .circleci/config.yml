@@ -5,6 +5,7 @@ executors:
     base10:
         docker:
             - image: 'cypress/included:3.4.0'
+        
 workflows:
     build:
         jobs:
@@ -17,3 +18,4 @@ workflows:
                   record: true
                   store_artifacts: true
                   command: 'npm run cy:run'
+                  parallelism: 4
