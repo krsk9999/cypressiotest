@@ -1,19 +1,20 @@
 version: 2.1
 orbs:
-  cypress: cypress-io/cypress@1.13.0
+    cypress: cypress-io/cypress@1.13.0
 executors:
-  base10:
-    docker:
-      - image: 'cypress/included:3.4.0'
+    base10:
+        docker:
+            - image: 'cypress/included:3.4.0'
 workflows:
-  build:
-    jobs:
-      # record Cypress tests on the Dashboard
-      - cypress/install
-      - cypress/run:
-          executor: base10
-          browser: chrome
-          record: true
-          store_artifacts: true
-          command: 'npm run cy:run'
-      - store_test_results:
+    build:
+        jobs:
+            # record Cypress tests on the Dashboard
+            - cypress/install
+            - cypress/run:
+                  executor: base10
+                  browser: chrome
+                  record: true
+                  store_artifacts: true
+                  command: 'npm run cy:run'
+            - store_test_results:
+              path: "cypress/report"
