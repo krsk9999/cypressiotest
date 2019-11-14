@@ -16,5 +16,3 @@ workflows:
                   record: true
                   store_artifacts: true
                   command: 'npm run cy:run'
-            - store_test_results:
-              path: "cypress/report"
