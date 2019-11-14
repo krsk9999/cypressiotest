@@ -8,9 +8,10 @@ executors:
 workflows:
     build:
         jobs:
-            # record Cypress tests on the Dashboard
-            - cypress/install
+            # record Cypress tests on the Dashboard            
             - cypress/run:
+              requires:
+                - cypress/install
                   executor: base10
                   browser: chrome
                   record: true
