@@ -1,12 +1,9 @@
 {
 	"projectId": "38d3fy",
 	"chromeWebSecurity": false,
-	"reporter": "mochawesome",
+	"reporter": "junit",
 	"reporterOptions": {
-		"reportDir": "cypress/report/mochawesome-report",
-		"overwrite": true,
-		"html": true,
-		"json": true,
-		"timestamp": "mmddyyyy_HHMMss"
+		"mochaFile": "report/mocha/results.xml",
+		"toConsole": true
 	}
 }
