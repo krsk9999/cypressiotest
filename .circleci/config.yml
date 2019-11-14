@@ -4,7 +4,7 @@ orbs:
 executors:
   base10:
     docker:
-      - image: 'cypress/base:10'
+      - image: 'cypress/included:3.4.0'
 workflows:
   build:
     jobs:
@@ -15,6 +15,7 @@ workflows:
           browser: chrome
           record: true
           store_artifacts: true
+          command: 'npm run cy:run'
 
           post-steps:
             - store_artifacts:
