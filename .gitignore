@@ -6,3 +6,5 @@ cypress/report/
 cypress/report/**
 out/*
 out/ 
+cypress/screenshots/
+cypress/screenshots/**
