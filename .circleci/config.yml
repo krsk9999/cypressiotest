@@ -16,7 +16,3 @@ workflows:
           record: true
           store_artifacts: true
           command: 'npm run cy:run'
-
-          post-steps:
-            - store_artifacts:
-                path: mochawesome-report
