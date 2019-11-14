@@ -16,10 +16,3 @@ workflows:
                   record: false
                   store_artifacts: true
                   command: 'npm run cy:run'
-        triggers:
-            - schedule:
-              cron: '0 0 8,14 ? * * *'
-              filters:
-                branches:
-                  only:
-                    - master
