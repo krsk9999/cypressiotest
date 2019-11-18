@@ -9,7 +9,7 @@ workflows:
     version: 2
     build:        
         jobs:            
-            - cypress/install
+            #- cypress/install
             - cypress/run:
                   executor: base10
                   browser: chrome
