@@ -6,7 +6,7 @@ executors:
         docker:
             - image: 'cypress/included:3.6.1'
 workflows:
-    varsion: 2
+    version: 2
     # build:        
     #     jobs:
     #         # record Cypress tests on the Dashboard
