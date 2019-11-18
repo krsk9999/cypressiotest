@@ -7,20 +7,20 @@ executors:
             - image: 'cypress/included:3.6.1'
 workflows:
     varsion: 2
-    build:        
-        jobs:
-            # record Cypress tests on the Dashboard
-            - cypress/install
-            - cypress/run:
-                  executor: base10
-                  browser: chrome
-                  record: false
-                  store_artifacts: true
-                  command: 'npm run cy:run'
+    # build:        
+    #     jobs:
+    #         # record Cypress tests on the Dashboard
+    #         - cypress/install
+    #         - cypress/run:
+    #               executor: base10
+    #               browser: chrome
+    #               record: false
+    #               store_artifacts: true
+    #               command: 'npm run cy:run'
     nightly:
         triggers:
             - schedule:
-                cron: "20 8,15 * * *"
+                cron: "22 8,15 * * *"
                 filters:
                 branches:
                     only:
