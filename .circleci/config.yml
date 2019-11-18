@@ -14,14 +14,8 @@ workflows:
                 executor: base10
                 browser: chrome
                 record: false # record Cypress tests on the Dashboard
-                #store_artifacts: true
+                store_artifacts: true
                 command: 'npm run cy:run'
-                store_artifacts:
-                    path: cypress/videos
-                store_artifacts:
-                    path: cypress/screenshots
-                store_artifacts:
-                    path: cypress/report
                 
     scheduled:
         triggers:
@@ -36,11 +30,5 @@ workflows:
                 executor: base10
                 browser: chrome
                 record: false
-                #store_artifacts: true
+                store_artifacts: true
                 command: 'npm run cy:run'
-                store_artifacts:
-                    path: cypress/videos
-                store_artifacts:
-                    path: cypress/screenshots
-                store_artifacts:
-                    path: cypress/report
