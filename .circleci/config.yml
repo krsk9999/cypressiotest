@@ -25,7 +25,6 @@ workflows:
                         only:
                             - master
         jobs:
-            - cypress/install
             - cypress/run:
                   executor: base10
                   browser: chrome
