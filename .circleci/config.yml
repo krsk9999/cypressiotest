@@ -6,6 +6,7 @@ executors:
         docker:
             - image: 'cypress/included:3.6.1'
 workflows:
+    varsion: 2
     build:
         jobs:
             # record Cypress tests on the Dashboard
@@ -16,11 +17,10 @@ workflows:
                   record: false
                   store_artifacts: true
                   command: 'npm run cy:run'
-            nightly:
-                triggers:
-                    - schedule:
-                        cron: "0 8,14 * * *"
-                        filters:
-                        branches:
-                            only:
-                            - master
+            triggers:
+                - schedule:
+                    cron: "0 8,14 * * *"
+                    filters:
+                    branches:
+                        only:
+                        - master
