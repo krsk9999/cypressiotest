@@ -5,6 +5,10 @@ executors:
     base10:
         docker:
             - image: 'cypress/included:3.6.1'
+                environment:
+                    TZ: "CST"
+        environment:
+            TZ: "CST"
 workflows:
     version: 2
     build:        
