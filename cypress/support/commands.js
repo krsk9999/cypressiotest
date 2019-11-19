@@ -170,7 +170,7 @@ Cypress.Commands.add("singleFormSubmit", () => {
 
 Cypress.Commands.add("validateGoogleClientId", xhrResponseJson => {
 	if (xhrResponseJson.CustomData[0].Key == "GoogleClientId") {
-		expect(xhrResponseJson.CustomData[0].Value).to.not.equal(1)
+		expect(xhrResponseJson.CustomData[0].Value).to.not.equal('1')
 		expect(xhrResponseJson.CustomData[0].Value).to.not.equal("")
 	}else{
 		expect(xhrResponseJson.CustomData[0].Key).to.equal('GoogleClientId')

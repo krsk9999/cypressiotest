@@ -1,18 +1,18 @@
 {
     "timeLine":{
-        "thirtyDays": "within 30 days",
-        "sixtyDays": "within 60 days",
-        "urgent": "urgent",
-        "noRush": "no rush"
+        "thirtyDays": "Within 30 days",
+        "sixtyDays": "Within 60 days",
+        "urgent": "Urgent",
+        "noRush": "No rush"
     },
     "roomType":{
-        "shared":"shared",
-        "privateOneBedroom": "private one bedroom",
-        "privateTwoBedroom": "private two bedroom"
+        "shared":"Shared",
+        "privateOneBedroom": "Private one bedroom",
+        "privateTwoBedroom": "Private two bedroom"
     },
     "budget":{
-        "unsure": "unsure",
-        "standard": "standard",
-        "luxury": "luxury"
+        "unsure": "Unsure",
+        "standard": "Standard",
+        "luxury": "Luxury"
     }
 }

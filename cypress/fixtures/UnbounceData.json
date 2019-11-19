@@ -23,7 +23,33 @@
 				"ppUrl": "https://www.alzheimers.net/privacy-policy/"
 			}
 		}
-	},"iDotLocalSimpleFree": {
+	},
+	"iDotWAAAC": {
+		"url": "https://unbounce-test.aplaceformom.com/tnl-550/",
+		"variants": {
+			"a": {
+				"url": "a.html",
+				"bodyTag": "semu-4-4-general-tbp-three-step",
+				"dataPaFormid": "1127.1",
+				"dataPaTechstack": "unbounce",
+				"dataPaFormtype": "semu-iDOT-comm-1",
+				"sourceId": "5666",
+				"phone": "8663071704",
+				"creativeId": "APFM|DT|Primary|A",
+				"touUrl": "https://www.aplaceformom.com/terms-of-use",
+				"ppUrl": "https://www.aplaceformom.com/privacy",
+				"steps":{
+					"stepOne":{
+						"url":"community-selections"
+					},
+					"stepTwo":{
+						"url": "community-options"
+					}
+				}
+			}
+		}
+	},
+	"iDotLocalSimpleFree": {
 		"url": "https://i.aplaceformom.com/simple-local-free-dev-inqa/",
 		"variants": {
 			"a": {
