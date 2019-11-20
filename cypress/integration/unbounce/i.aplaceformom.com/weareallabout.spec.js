@@ -63,13 +63,14 @@ describe('We are all about community', () => {
 		});
 
 		it('Fields are required', () => {
-			mainPage.visit(url + variant);
+            mainPage.visit(url + variant);
+            cy.screenshot();
 
 			cy.server();
 			cy.route(
 				'POST',
 				'https://gw.aplaceformom.com/Prod/api/ws3/leads/v1'
-			).as('leadSubmitRequest');
+            ).as('leadSubmitRequest');
 
 			mainPage.getLocationElement.as('location');
 
@@ -83,7 +84,7 @@ describe('We are all about community', () => {
 							.replace(/[^\w\s]/gi, '')
 							.replace(/\n/g, '')
 							.replace(/\s/g, '')
-					).to.eq(pagePhone);
+					).to.contain(pagePhone);
 				});
 
 			mainPage.getNextElement.as('nextBTN');
@@ -102,7 +103,8 @@ describe('We are all about community', () => {
 			cy.url().should(
 				'contain',
 				domainsData.variants.a.steps.stepOne.url
-			);
+            );
+            cy.screenshot();
 
 			mainPage.getSelectionsElement.find('#timeline').as('timeline');
 			mainPage.getSelectionsElement.find('#room_type').as('roomtype');
@@ -125,12 +127,138 @@ describe('We are all about community', () => {
             cy.url().should(
 				'contain',
 				domainsData.variants.a.steps.stepTwo.url
+            );
+            cy.screenshot();
+
+            //initial State
+            mainPage.getNameElement.as('name');
+            mainPage.getEmailElement.as('email');
+            mainPage.getPhoneElement.as('phone');
+            
+            cy.get('.location-hl').as('subheadline').should("have.text", location);
+            //cy.get('#caretype-hl').as('subheadline').should("have.text", location);
+
+            cy.get('@name').should('not.have.class', 'error');
+            cy.get('@email').should('not.have.class', 'error');
+            cy.get('@phone').should('not.have.class', 'error');
+
+            //Validate required fields are highlighted in red
+            cy.get('@nextBTN').click();
+
+            cy.get('@name').should('have.class', 'error');
+            cy.get('@email').should('have.class', 'error');
+            cy.get('@phone').should('have.class', 'error');
+
+            //Entering data
+            cy.get('@name').type(name).should('have.value', name);
+            cy.get('@email').type(email).should('have.value', email);
+            cy.get('@phone').type(phone).should('have.value', '(555) 555-5555');
+            
+            mainPage.getSubmitElement.click();
+
+			//Validate Lead was successfully sent
+            cy.url().should('contain', 'thank-you');
+            cy.screenshot();
+			cy.getCookie('leadsubmit').should('have.property', 'value', 'true');
+
+			cy.wait('@leadSubmitRequest');
+
+			//Assert on XHR
+			cy.get('@leadSubmitRequest').then(function(xhr) {
+				responseBody = JSON.parse(xhr.response.body);
+				expect(xhr.status).to.eq(201);
+				expect(responseBody.CreativeId).to.eq(creativeId);
+				expect(responseBody.SourceId).to.eq(sourceId);
+                //Uncomment this assertion once code is promoted to prod
+                //cy.validateGoogleClientId(responseBody);
+			});
+
+			tyPage.getlocalOptionsElement.as('listings');
+
+			cy.get('@listings').click();
+
+			cy.url().should(
+				'contain',
+				'.aplaceformom.com/assisted-living/washington/bellevue'
+            );
+        });
+        
+        it('Dynamic Location - Lead Submission & Subheadline Validations', () => {
+			mainPage.visit(`${navigationUrl}${dynamicLocationData.first.queryString}`);
+
+			cy.server();
+			cy.route(
+				'POST',
+				'https://gw.aplaceformom.com/Prod/api/ws3/leads/v1'
+            ).as('leadSubmitRequest');
+            
+            cy.route(
+				'GET',
+				'https://api.apfmservices.com/destination-page-lite/destination-page/nursing-homes/florida/lakeland'
+            ).as('communityLoader');
+
+			mainPage.getLocationElement.as('location');
+
+			//Initial state
+			cy.get('@location').should('not.have.class', 'error');
+			cy.get('div#lp-pom-text-13 span')
+				.invoke('text')
+				.then($text => {
+					expect(
+						$text
+							.replace(/[^\w\s]/gi, '')
+							.replace(/\n/g, '')
+							.replace(/\s/g, '')
+					).to.contain(pagePhone);
+				});
+
+			mainPage.getNextElement.as('nextBTN');
+
+			//Validate Errors
+			cy.get('@nextBTN').click();
+
+			//Entering Data
+			cy.get('@location').should('have.value', 'South Lake Morton, FL');
+
+			cy.get('@nextBTN').click();
+
+			cy.url().should(
+				'contain',
+				domainsData.variants.a.steps.stepOne.url
+			);
+
+			mainPage.getSelectionsElement.find('#timeline').as('timeline');
+			mainPage.getSelectionsElement.find('#room_type').as('roomtype');
+			mainPage.getSelectionsElement.find('#budget').as('budget');
+
+			//Select dropdowns
+			cy.get('@timeline').select(selections.timeLine.urgent);
+
+			cy.get('@roomtype').select(selections.roomType.privateOneBedroom);
+
+			cy.get('@budget').select(selections.budget.luxury);
+
+			//Continue to step 2
+			cy.get('@nextBTN').click();
+
+            cy.wait('@communityLoader');
+			//Validate Community Builder
+            cy.get('.builder-container').should('exist');
+            
+
+			//Step 2 Options
+            cy.url().should(
+				'contain',
+				domainsData.variants.a.steps.stepTwo.url
 			);
 
             //initial State
             mainPage.getNameElement.as('name');
             mainPage.getEmailElement.as('email');
             mainPage.getPhoneElement.as('phone');
+            
+            cy.get('.location-hl').as('subheadlineLocation').should("have.text", 'South Lake Morton, FL');
+            cy.get('.caretype-hl').as('subheadlineCaretype').should("contain.text", 'Nursing Home');
 
             cy.get('@name').should('not.have.class', 'error');
             cy.get('@email').should('not.have.class', 'error');
@@ -172,7 +300,7 @@ describe('We are all about community', () => {
 
 			cy.url().should(
 				'contain',
-				'.aplaceformom.com/assisted-living/washington/bellevue'
+				'aplaceformom.com/nursing-homes/florida/lakeland'
 			);
 		});
 
@@ -206,10 +334,8 @@ describe('We are all about community', () => {
 				});
 		});
 
-        //TODO Include Privacy and Policy Validations
-        /*
-		it.skip('Validate Therms of Use link', () => {
-			cy.navigate(url, variant);
+		it('Validate Therms of Use link', () => {
+			cy.navigate('https://unbounce-test.aplaceformom.com/community-options-tnl-551/');
 
 			cy.get(
 				`a[href="clkn/https/www.aplaceformom.com/terms-of-use"]`
@@ -218,14 +344,14 @@ describe('We are all about community', () => {
 			cy.url().should('eq', touUrl);
 		});
 
-		it.skip('Validate Privacy Policy link', () => {
-			cy.navigate(url, variant);
+		it('Validate Privacy Policy link', () => {
+			cy.navigate('https://unbounce-test.aplaceformom.com/community-options-tnl-551/');
 
 			cy.get(`a[href="clkn/https/www.aplaceformom.com/privacy"]`).click();
 
 			cy.url().should('eq', ppUrl);
         });
-        */
+        
 
 		it('Validate Dynamic Locations First Scenario variant a', () => {
 			//URls for each of the 9 scenarios of the Dynamic Locations validations
