@@ -183,7 +183,7 @@ describe('We are all about community', () => {
             );
         });
         
-        it('Dynamic Location - Lead Submission & Subheadline Validations', () => {
+        it.only('Dynamic Location - Lead Submission & Subheadline Validations', () => {
 			mainPage.visit(`${navigationUrl}${dynamicLocationData.first.queryString}`);
 
 			cy.server();
@@ -192,11 +192,6 @@ describe('We are all about community', () => {
 				'https://gw.aplaceformom.com/Prod/api/ws3/leads/v1'
             ).as('leadSubmitRequest');
             
-            cy.route(
-				'GET',
-				'https://api.apfmservices.com/destination-page-lite/destination-page/nursing-homes/florida/lakeland'
-            ).as('communityLoader');
-
 			mainPage.getLocationElement.as('location');
 
 			//Initial state
@@ -241,8 +236,7 @@ describe('We are all about community', () => {
 			//Continue to step 2
 			cy.get('@nextBTN').click();
 
-            cy.wait('@communityLoader');
-			//Validate Community Builder
+            //Validate Community Builder
             cy.get('.builder-container').should('exist');
             
 
