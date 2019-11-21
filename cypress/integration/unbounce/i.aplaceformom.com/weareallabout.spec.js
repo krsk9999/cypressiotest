@@ -1,6 +1,5 @@
 import iDot from '../../../models/pages/aplaceformom/iDot/iDot.js';
 import iDotTY from '../../../models/pages/aplaceformom/iDot/iDotTY.js';
-import { gzipSync } from 'zlib';
 
 describe('We are all about community', () => {
 	context('Form Validations and Lead submissions', () => {
@@ -63,14 +62,14 @@ describe('We are all about community', () => {
 		});
 
 		it('Fields are required', () => {
-            mainPage.visit(url + variant);
-            cy.screenshot();
+			mainPage.visit(url + variant);
+			cy.screenshot();
 
 			cy.server();
 			cy.route(
 				'POST',
 				'https://gw.aplaceformom.com/Prod/api/ws3/leads/v1'
-            ).as('leadSubmitRequest');
+			).as('leadSubmitRequest');
 
 			mainPage.getLocationElement.as('location');
 
@@ -103,8 +102,8 @@ describe('We are all about community', () => {
 			cy.url().should(
 				'contain',
 				domainsData.variants.a.steps.stepOne.url
-            );
-            cy.screenshot();
+			);
+			cy.screenshot();
 
 			mainPage.getSelectionsElement.find('#timeline').as('timeline');
 			mainPage.getSelectionsElement.find('#room_type').as('roomtype');
@@ -124,41 +123,49 @@ describe('We are all about community', () => {
 			cy.get('.builder-container').should('exist');
 
 			//Step 2 Options
-            cy.url().should(
+			cy.url().should(
 				'contain',
 				domainsData.variants.a.steps.stepTwo.url
-            );
-            cy.screenshot();
+			);
+			cy.screenshot();
 
-            //initial State
-            mainPage.getNameElement.as('name');
-            mainPage.getEmailElement.as('email');
-            mainPage.getPhoneElement.as('phone');
-            
-            cy.get('.location-hl').as('subheadline').should("have.text", location);
-            //cy.get('#caretype-hl').as('subheadline').should("have.text", location);
+			//initial State
+			mainPage.getNameElement.as('name');
+			mainPage.getEmailElement.as('email');
+			mainPage.getPhoneElement.as('phone');
 
-            cy.get('@name').should('not.have.class', 'error');
-            cy.get('@email').should('not.have.class', 'error');
-            cy.get('@phone').should('not.have.class', 'error');
+			cy.get('.location-hl')
+				.as('subheadline')
+				.should('have.text', location);
+			//cy.get('#caretype-hl').as('subheadline').should("have.text", location);
 
-            //Validate required fields are highlighted in red
-            cy.get('@nextBTN').click();
+			cy.get('@name').should('not.have.class', 'error');
+			cy.get('@email').should('not.have.class', 'error');
+			cy.get('@phone').should('not.have.class', 'error');
 
-            cy.get('@name').should('have.class', 'error');
-            cy.get('@email').should('have.class', 'error');
-            cy.get('@phone').should('have.class', 'error');
+			//Validate required fields are highlighted in red
+			cy.get('@nextBTN').click();
 
-            //Entering data
-            cy.get('@name').type(name).should('have.value', name);
-            cy.get('@email').type(email).should('have.value', email);
-            cy.get('@phone').type(phone).should('have.value', '(555) 555-5555');
-            
-            mainPage.getSubmitElement.click();
+			cy.get('@name').should('have.class', 'error');
+			cy.get('@email').should('have.class', 'error');
+			cy.get('@phone').should('have.class', 'error');
+
+			//Entering data
+			cy.get('@name')
+				.type(name)
+				.should('have.value', name);
+			cy.get('@email')
+				.type(email)
+				.should('have.value', email);
+			cy.get('@phone')
+				.type(phone)
+				.should('have.value', '(555) 555-5555');
+
+			mainPage.getSubmitElement.click();
 
 			//Validate Lead was successfully sent
-            cy.url().should('contain', 'thank-you');
-            cy.screenshot();
+			cy.url().should('contain', 'thank-you');
+			cy.screenshot();
 			cy.getCookie('leadsubmit').should('have.property', 'value', 'true');
 
 			cy.wait('@leadSubmitRequest');
@@ -169,8 +176,8 @@ describe('We are all about community', () => {
 				expect(xhr.status).to.eq(201);
 				expect(responseBody.CreativeId).to.eq(creativeId);
 				expect(responseBody.SourceId).to.eq(sourceId);
-                //Uncomment this assertion once code is promoted to prod
-                //cy.validateGoogleClientId(responseBody);
+				//Uncomment this assertion once code is promoted to prod
+				//cy.validateGoogleClientId(responseBody);
 			});
 
 			tyPage.getlocalOptionsElement.as('listings');
@@ -180,18 +187,20 @@ describe('We are all about community', () => {
 			cy.url().should(
 				'contain',
 				'.aplaceformom.com/assisted-living/washington/bellevue'
-            );
-        });
-        
-        it.only('Dynamic Location - Lead Submission & Subheadline Validations', () => {
-			mainPage.visit(`${navigationUrl}${dynamicLocationData.first.queryString}`);
+			);
+		});
+
+		it('Dynamic Location - Lead Submission & Subheadline Validations', () => {
+			mainPage.visit(
+				`${navigationUrl}${dynamicLocationData.first.queryString}`
+			);
 
 			cy.server();
 			cy.route(
 				'POST',
 				'https://gw.aplaceformom.com/Prod/api/ws3/leads/v1'
-            ).as('leadSubmitRequest');
-            
+			).as('leadSubmitRequest');
+
 			mainPage.getLocationElement.as('location');
 
 			//Initial state
@@ -236,41 +245,50 @@ describe('We are all about community', () => {
 			//Continue to step 2
 			cy.get('@nextBTN').click();
 
-            //Validate Community Builder
-            cy.get('.builder-container').should('exist');
-            
+			//Validate Community Builder
+			cy.get('.builder-container').should('exist');
 
 			//Step 2 Options
-            cy.url().should(
+			cy.url().should(
 				'contain',
 				domainsData.variants.a.steps.stepTwo.url
 			);
 
-            //initial State
-            mainPage.getNameElement.as('name');
-            mainPage.getEmailElement.as('email');
-            mainPage.getPhoneElement.as('phone');
-            
-            cy.get('.location-hl').as('subheadlineLocation').should("have.text", 'South Lake Morton, FL');
-            cy.get('.caretype-hl').as('subheadlineCaretype').should("contain.text", 'Nursing Home');
+			//initial State
+			mainPage.getNameElement.as('name');
+			mainPage.getEmailElement.as('email');
+			mainPage.getPhoneElement.as('phone');
 
-            cy.get('@name').should('not.have.class', 'error');
-            cy.get('@email').should('not.have.class', 'error');
-            cy.get('@phone').should('not.have.class', 'error');
+			cy.get('.location-hl')
+				.as('subheadlineLocation')
+				.should('have.text', 'South Lake Morton, FL');
+			cy.get('.caretype-hl')
+				.as('subheadlineCaretype')
+				.should('contain.text', 'Nursing Home');
 
-            //Validate required fields are highlighted in red
-            cy.get('@nextBTN').click();
+			cy.get('@name').should('not.have.class', 'error');
+			cy.get('@email').should('not.have.class', 'error');
+			cy.get('@phone').should('not.have.class', 'error');
 
-            cy.get('@name').should('have.class', 'error');
-            cy.get('@email').should('have.class', 'error');
-            cy.get('@phone').should('have.class', 'error');
+			//Validate required fields are highlighted in red
+			cy.get('@nextBTN').click();
 
-            //Entering data
-            cy.get('@name').type(name).should('have.value', name);
-            cy.get('@email').type(email).should('have.value', email);
-            cy.get('@phone').type(phone).should('have.value', '(555) 555-5555');
-            
-            mainPage.getSubmitElement.click();
+			cy.get('@name').should('have.class', 'error');
+			cy.get('@email').should('have.class', 'error');
+			cy.get('@phone').should('have.class', 'error');
+
+			//Entering data
+			cy.get('@name')
+				.type(name)
+				.should('have.value', name);
+			cy.get('@email')
+				.type(email)
+				.should('have.value', email);
+			cy.get('@phone')
+				.type(phone)
+				.should('have.value', '(555) 555-5555');
+
+			mainPage.getSubmitElement.click();
 
 			//Validate Lead was successfully sent
 			cy.url().should('contain', 'thank-you');
@@ -284,8 +302,8 @@ describe('We are all about community', () => {
 				expect(xhr.status).to.eq(201);
 				expect(responseBody.CreativeId).to.eq(creativeId);
 				expect(responseBody.SourceId).to.eq(sourceId);
-                //Uncomment this assertion once code is promoted to prod
-                //cy.validateGoogleClientId(responseBody);
+				//Uncomment this assertion once code is promoted to prod
+				//cy.validateGoogleClientId(responseBody);
 			});
 
 			tyPage.getlocalOptionsElement.as('listings');
@@ -329,7 +347,9 @@ describe('We are all about community', () => {
 		});
 
 		it('Validate Therms of Use link', () => {
-			cy.navigate('https://unbounce-test.aplaceformom.com/community-options-tnl-551/');
+			cy.navigate(
+				'https://unbounce-test.aplaceformom.com/community-options-tnl-551/'
+			);
 
 			cy.get(
 				`a[href="clkn/https/www.aplaceformom.com/terms-of-use"]`
@@ -339,13 +359,14 @@ describe('We are all about community', () => {
 		});
 
 		it('Validate Privacy Policy link', () => {
-			cy.navigate('https://unbounce-test.aplaceformom.com/community-options-tnl-551/');
+			cy.navigate(
+				'https://unbounce-test.aplaceformom.com/community-options-tnl-551/'
+			);
 
 			cy.get(`a[href="clkn/https/www.aplaceformom.com/privacy"]`).click();
 
 			cy.url().should('eq', ppUrl);
-        });
-        
+		});
 
 		it('Validate Dynamic Locations First Scenario variant a', () => {
 			//URls for each of the 9 scenarios of the Dynamic Locations validations

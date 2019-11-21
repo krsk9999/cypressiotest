@@ -9,6 +9,6 @@ out/
 cypress/screenshots/
 cypress/screenshots/**
 node_modules/
-report/
 node_modules/**
+report/
 report/**
