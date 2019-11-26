@@ -218,9 +218,6 @@ describe('We are all about community', () => {
 
 			mainPage.getNextElement.as('nextBTN');
 
-			//Validate Errors
-			cy.get('@nextBTN').click();
-
 			//Entering Data
 			cy.get('@location').should('have.value', 'South Lake Morton, FL');
 

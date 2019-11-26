@@ -1,4 +1,4 @@
-class cDotTYMobileB{
+class mobileDotTYA{
 
     constructor(){        
         this.localOptions = "#lp-pom-button-80";  
@@ -14,4 +14,4 @@ class cDotTYMobileB{
               
 }
 
-export default cDotTYMobileB;
+export default mobileDotTYA;

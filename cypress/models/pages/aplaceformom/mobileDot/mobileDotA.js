@@ -1,6 +1,6 @@
 import basePage from '../../basePage.js';
 
-class cDotMobileB extends basePage{
+class mobileDotA extends basePage{
 
     constructor(){
         super();
@@ -22,4 +22,4 @@ class cDotMobileB extends basePage{
               
 }
 
-export default cDotMobileB;
+export default mobileDotA;
