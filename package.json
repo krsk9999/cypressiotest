@@ -8,7 +8,8 @@
     "cy:open": "cypress open --env configFile=dev",
     "cy:run": "cypress run --browser chrome --env configFile=dev",
     "debug": "cypress run --browser chrome --env configFile=dev --spec cypress/integration/unbounce/senioradvisor/locate.senioradvisor.com/formValidations.spec.js --record --key ab25a1ec-d69f-44ca-9655-92e6c09f86d5",
-    "parallel": "cypress run --spec cypress/integration/examples/connection.spec.js --env configFile=dev --record --key ab25a1ec-d69f-44ca-9655-92e6c09f86d5 --parallel"
+    "parallel": "cypress run --spec cypress/integration/examples/connection.spec.js --env configFile=dev --record --key ab25a1ec-d69f-44ca-9655-92e6c09f86d5 --parallel",
+    "db": "node cypress/db/testmssql/test.js"
   },
   "author": "",
   "license": "ISC",
@@ -23,7 +24,9 @@
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
     "cypress": "^3.6.1",
     "cypress-image-snapshot": "^3.1.1",
+    "cypress-sql-server": "^1.0.0",
     "cypress-wait-until": "^1.3.0",
+    "dotenv": "^8.2.0",
     "jest": "^24.9.0",
     "mocha-junit-reporter": "^1.23.1",
     "moment": "^2.24.0",
