@@ -9,7 +9,8 @@
     "cy:run": "cypress run --browser chrome --env configFile=dev",
     "debug": "cypress run --browser chrome --env configFile=dev --spec cypress/integration/unbounce/senioradvisor/locate.senioradvisor.com/formValidations.spec.js --record --key ab25a1ec-d69f-44ca-9655-92e6c09f86d5",
     "parallel": "cypress run --spec cypress/integration/examples/connection.spec.js --env configFile=dev --record --key ab25a1ec-d69f-44ca-9655-92e6c09f86d5 --parallel",
-    "db": "node cypress/db/testmssql/test.js"
+    "db": "node cypress/db/testmssql/test.js",
+    "start": "cypress run --browser chrome --env configFile=dev --spec cypress/integration/unbounce/i.aplaceformom.com/weareallabout.spec.js"
   },
   "author": "",
   "license": "ISC",

@@ -43,6 +43,7 @@ module.exports = (on, config) => {
 
 	//on('file:preprocessor', selectTests(config, pickTests))
 	on("before:browser:launch", (browser = {}, args) => {
+
 		// browser will look something like this
 		// {
 		//   name: 'chrome',

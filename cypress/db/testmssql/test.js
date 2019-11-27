@@ -16,6 +16,8 @@ var config = {
     parseJSON: true
 };
 
+let site = process.env._SITE;
+//console.log(site);
 
 // connect to your database
 sql.connect(config, function(err) {
@@ -29,6 +31,7 @@ sql.connect(config, function(err) {
                         pcd.field_value as [google_client_id],
                         pl.source_id,
                         plp.local_number,
+                        pp.first_name + ' '+ pp.last_name as [username],
                         pe.address,
                         pl.URL,
                         pl.referring_url,
@@ -42,11 +45,12 @@ sql.connect(config, function(err) {
                     JOIN Pre_Lead_Email pe ON pp.pre_lead_person_ID = pe.pre_lead_person_ID
                     JOIN Pre_Lead_Custom_Data pcd on pl.pre_lead_id = pcd.pre_lead_id
                     JOIN Pre_Lead_Phone plp on plp.pre_lead_person_id = pp.pre_lead_person_id
-                    where pl.URL like '%.aplaceformom.com%' and
-                    [address] like 'kenneth.ramirez%@aplaceformom.com%'
-                    and pl.created_on >= '2019-11-21 00:00:00.000'
+                    where pl.URL like '%${site}%' and [address] like '%@aplaceformom.com%'
+                    and pl.created_on >= CAST(CAST(GETDATE() AS DATE) AS DATETIME)
                     and pcd.field_name = 'GoogleClientId'
                     Order by pl.created_on DESC`;
+
+    //console.log(query);
 
 	// query to the database and get the records
 	request.query(query, function(err, recordset) {
@@ -57,11 +61,11 @@ sql.connect(config, function(err) {
 
             if(err) {
                 return console.log(err);
-            }
-        
-            console.log("The file was saved!");
+            }        
+            console.log("Database information properly collected and Stored!");
         }); 
-		console.log(true);
+
+        //return recordset;
 	});
 });
 

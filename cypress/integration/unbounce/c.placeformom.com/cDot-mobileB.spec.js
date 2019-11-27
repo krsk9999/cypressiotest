@@ -1,5 +1,7 @@
 import cDot from "../../../models/pages/aplaceformom/cDot/mobile/cDotMobileB.js";
 import cDotTY from "../../../models/pages/aplaceformom/cDot/mobile/cDotTYMobileB.js";
+var moment = require('moment');
+moment().format();
 
 describe("cDot/mobile form validations", () => {
 	context("Form Validations and Lead submissions variant 'B'", () => {
@@ -19,10 +21,13 @@ describe("cDot/mobile form validations", () => {
 		let ppUrl;
 
 		//Variables
-		let location = Cypress.env("location") || "New York, NY";
-		let name = Cypress.env("name") || "testdotcall";
-		let email = Cypress.env("email") || "testdotcall@aplaceformom.com";
-		let phone = Cypress.env("phone") || "(555) 555-5555";
+		let location = Cypress.env('location') || 'New York, NY';
+		let dateF = moment();
+		let name = `testdonotcall${dateF.valueOf()}` || Cypress.env('name');
+		let email =
+			`automation${dateF.valueOf()}@aplaceformom.com` ||
+			Cypress.env('email');
+		let phone = Cypress.env('phone') || '(555) 555-5555';
 
 		before(() => {
 			cy.fixture("UnbounceData.json").then(d => {
