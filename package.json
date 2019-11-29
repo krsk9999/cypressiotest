@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "cy:open": "cypress open",
-    "cy:run": "cypress run --browser chrome --env configFile=dev",
+    "cy:running": "cypress run --browser chrome --env configFile=dev",
+    "cy:run": "cypress run --browser chrome",
     "debug": "cypress run --browser chrome --env configFile=dev --spec cypress/integration/unbounce/senioradvisor/locate.senioradvisor.com/formValidations.spec.js --record --key ab25a1ec-d69f-44ca-9655-92e6c09f86d5",
     "parallel": "cypress run --spec cypress/integration/examples/connection.spec.js --env configFile=dev --record --key ab25a1ec-d69f-44ca-9655-92e6c09f86d5 --parallel",
     "db": "node cypress/db/testmssql/database.js",
