@@ -126,6 +126,11 @@ describe("cDot main form validations", () => {
 				"contain",
 				".aplaceformom.com/assisted-living/washington/bellevue"
 			);
+
+			cy.sqlServer({domain : url, email : email}).then($result => {
+				expect($result.filter(p => p.source_id == sourceId && p.address == email).length > 0, 'Lead Stored in Database?').to.be.true;
+				cy.log($result.filter(p => p.source_id == sourceId && p.address == email));
+			});
 		});
 
 		it("Validate FDEs", () => {

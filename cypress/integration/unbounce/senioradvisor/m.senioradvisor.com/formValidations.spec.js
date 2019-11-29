@@ -7,25 +7,56 @@ moment().format();
 describe('m.senioradvisor.com', () => {
 	context('Form Validations and Lead submissions', () => {
 		let domainsData;
-		let dynamicLocationData;
+		let url;
+		let variant;
+		let bodyTag;
+		let sourceId;
+		let creativeId;
+		let responseBody;
+		let dataPaFormId;
+		let dataPaFormType;
+		let dataPaTechStack;
 		let mobilePage;
 		let tyPage;
-		let location = Cypress.env('location');
-		let name = Cypress.env('name');
-		let phone = Cypress.env('phone');
+		let dynamicLocationData;
+		let pagePhone;
+		let ppUrl;
+		let navigationUrl;
+		let dpfi;
+		let dpft;
+
+		//Variables
+		let location = Cypress.env('location') || 'New York, NY';
 		let dateF = moment();
-		console.log(dateF.valueOf());
+		let name = `testdonotcall${dateF.valueOf()}` || Cypress.env('name');
 		let email =
 			`automation${dateF.valueOf()}@aplaceformom.com` ||
 			Cypress.env('email');
+		let phone = Cypress.env('phone') || '(555) 555-5555';
 
 		before(() => {
 			cy.fixture('UnbounceData.json').then(d => {
-				domainsData = d;
+				domainsData = d.mDotSA;
+				url = domainsData.url;
+				variant = domainsData.variants.a.url;
+				bodyTag = domainsData.variants.a.bodyTag;
+				sourceId = domainsData.variants.a.sourceId;
+				creativeId = domainsData.variants.a.creativeId;
+				dataPaFormId = domainsData.variants.a.dataPaFormid;
+				dataPaFormType = domainsData.variants.a.dataPaFormtype;
+				dataPaTechStack = domainsData.variants.a.dataPaTechstack;
+				ppUrl = domainsData.variants.a.ppUrl;
+				pagePhone = domainsData.variants.a.phone;
+				bodyTag = domainsData.variants.a.bodyTag;
+				dpfi = domainsData.variants.a.dataPaFormid;
+				dpft = domainsData.variants.a.dataPaFormtype;
+				navigationUrl = url + variant;
 			});
 			cy.fixture('dynamicLocations.json').then(d => {
 				dynamicLocationData = d;
 			});
+			mobilePage = new mDotSA();
+			tyPage = new mDotTYSA();
 		});
 
 		beforeEach(() => {
@@ -39,15 +70,7 @@ describe('m.senioradvisor.com', () => {
 			cy.clearCookies();
 		});
 
-		it("Fields are required variant 'a'", () => {
-			let url = domainsData.mDotSA.url;
-			let variant = domainsData.mDotSA.variants.a.url;
-			let pagePhone = domainsData.mDotSA.variants.a.phone;
-			let fullUrl = url + variant;
-			let bodyTag = domainsData.mDotSA.variants.a.bodyTag;
-			let dpfi = domainsData.mDotSA.variants.a.dataPaFormid;
-			let dpft = domainsData.mDotSA.variants.a.dataPaFormtype;
-			let responseBody;
+		it.only("Fields are required variant 'a'", () => {
 
 			cy.server();
 
@@ -58,7 +81,7 @@ describe('m.senioradvisor.com', () => {
 			).as('leadSubmitRequest');
 
 			mobilePage = new mDotSA();
-			mobilePage.visit(fullUrl);
+			mobilePage.visit(navigationUrl);
 
 			//Phone number
 			cy.get(`a[href="clkn/tel/8666377839"]`).should('exist');
@@ -134,13 +157,14 @@ describe('m.senioradvisor.com', () => {
 				expect(responseBody.SourceId).to.eq('5765');
 			});
 
-			tyPage = new mDotTYSA();
-
 			tyPage.getlocalOptionsElement.click();
 
 			cy.url().should('contain', 'bellevue-wa');
-			//TODO - Add Unlock Pricing validations
-			//cy.getCookie('logged_in').should('have.property', 'value', 'true');
+			
+			cy.sqlServer({domain : url, email : email}).then($result => {
+				expect($result.filter(p => p.source_id == sourceId && p.address == email).length > 0, 'Lead Stored in Database?').to.be.true;
+				cy.log($result.filter(p => p.source_id == sourceId && p.address == email));
+			});
 		});
 
 		it('Validate Dynamic Locations First Scenario variant a', () => {

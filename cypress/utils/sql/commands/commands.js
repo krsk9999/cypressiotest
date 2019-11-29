@@ -1,3 +1,5 @@
+import design from '../../../utils/database/queries/query.js';
+
 module.exports = function() {
 	Cypress.Commands.add("sqlServerArray", query => {
 		if (!query) {
@@ -26,27 +28,31 @@ module.exports = function() {
 		});
 	});
 
-	Cypress.Commands.add("sqlServerJson", query => {
+	Cypress.Commands.add("sqlServer", filters => {
+
+		let query;
+
+		query = design(filters);
+
 		if (!query) {
 			throw new Error("Query must be set");
 		}
-
-		cy.task("sqlServerJson:execute", query).then(response => {
+	
+		cy.task("sqlServer:execute", query).then(response => {
 			let result = [];
-
+	
 			if (response) {
 				for (let i in response) {
-					let ar = {};
-					for (let c in response[i]) {
-						ar[response[i][c].metadata.colName] =
-							response[i][c].value;
+					let ar = {}
+					for (let c in response[i]) {		
+						ar[response[i][c].metadata.colName] = response[i][c].value;		
 					}
 					result.push(ar);
 				}
 			} else {
 				result = response;
 			}
-
+	
 			return result;
 		});
 	});

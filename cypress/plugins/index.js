@@ -1,4 +1,3 @@
-require("dotenv").config();
 // ***********************************************************
 // This example plugins/index.js can be used to load plugins
 //
@@ -17,20 +16,6 @@ const fs = require("fs-extra");
 const path = require("path");
 const sqlServer = require("cypress-sql-server");
 
-// const pickTests = (filename, foundTests, config) => {
-//   console.log('picking tests from file', filename)
-
-//   // found tests will be names of the tests found in "filename" spec
-//   // it is a list of names, each name an Array of strings
-//   // ['suite 1', 'suite 2', ..., 'test name']
-//   console.log('found tests')
-//   console.log(foundTests)
-//   const group = config.env.group || ' '
-
-//   // let's only run tests with "does" in the title
-//   return foundTests.filter(fullTestName => fullTestName.join(' ').includes(group))
-// }
-
 function getConfigurationByFile(file) {
 	const pathToConfigFile = path.resolve(`cypress.${file}.json`);
 
@@ -38,6 +23,7 @@ function getConfigurationByFile(file) {
 }
 
 module.exports = (on, config) => {
+
 	tasks = sqlServer.loadDBPlugin(config.env.db);
 
 	on("task", tasks);
@@ -68,7 +54,7 @@ module.exports = (on, config) => {
 		if (browser.name === "electron") {
 			// `args` is a `BrowserWindow` options object
 			// https://electronjs.org/docs/api/browser-window#new-browserwindowoptions
-			args["fullscreen"] = true;
+			//args["fullscreen"] = true;
 
 			// whatever you return here becomes the new args
 			return args;

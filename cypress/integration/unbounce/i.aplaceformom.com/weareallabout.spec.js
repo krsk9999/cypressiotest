@@ -1,5 +1,6 @@
 import iDot from "../../../models/pages/aplaceformom/iDot/iDot.js";
 import iDotTY from "../../../models/pages/aplaceformom/iDot/iDotTY.js";
+
 var moment = require("moment");
 moment().format();
 
@@ -66,7 +67,7 @@ describe("We are all about community", () => {
 			cy.viewport("macbook-15");
 		});
 
-		it.only("Fields are required", () => {
+		it("Fields are required", () => {
 			mainPage.visit(url + variant);
 			//cy.screenshot();
 
@@ -194,64 +195,11 @@ describe("We are all about community", () => {
 				".aplaceformom.com/assisted-living/washington/bellevue"
 			);
 
-			let db = new Array();
-			var a = document.createElement("a");
-			a.href = url;
-
-			cy.sqlServerJson(
-				`select pl.pre_lead_id,
-        pl.creative_id,
-        pcd.field_value as [google_client_id],
-        pl.source_id,
-        plp.local_number,
-        pp.first_name + ' '+ pp.last_name as [username],
-        pe.address,
-        pl.URL,
-        pl.referring_url,
-        pl.created_on,
-        pl.desired_city,
-        pl.desired_state,
-        pl.desired_zip,
-        pl.campaign_id
-    FROM Pre_Lead pl
-    JOIN pre_lead_person pp ON pl.pre_lead_id = pp.pre_lead_id
-    JOIN Pre_Lead_Email pe ON pp.pre_lead_person_ID = pe.pre_lead_person_ID
-    JOIN Pre_Lead_Custom_Data pcd on pl.pre_lead_id = pcd.pre_lead_id
-    JOIN Pre_Lead_Phone plp on plp.pre_lead_person_id = pp.pre_lead_person_id
-    where pl.URL like '%${a.hostname}%' and [address] = '${email}'
-    and pl.created_on >= CAST(CAST(GETDATE() AS DATE) AS DATETIME)
-    and pcd.field_name = 'GoogleClientId'
-    Order by pl.created_on DESC`
-			)
-			.then($result => {
+			cy.sqlServer({domain : url, email : email}).then($result => {
 				expect($result.filter(p => p.source_id == sourceId && p.address == email).length > 0, 'Lead Stored in Database?').to.be.true;
 				cy.log($result.filter(p => p.source_id == sourceId && p.address == email));
 			});
 
-			// let options = {
-			// 	env: {
-			// 		_SITE: a.hostname,
-			// 	},
-			// };
-
-			// cy.exec(`npm run db`, options).then($result => {
-			// 	console.log($result);
-			// });
-
-			// cy.fixture("results/db.json").then($data => {
-			// 	db = $data.recordsets[0];
-			// 	cy.log(
-			// 		db.filter(
-			// 			p => p.source_id == sourceId && p.address == email
-			// 		)[0]
-			// 	);
-			// 	expect(
-			// 		db.filter(
-			// 			p => p.source_id == sourceId && p.address == email
-			// 		).length,
-			// 		"Lead Found in DB?"
-			// 	).to.be.greaterThan(0);
-			// });
 		});
 
 		it("Dynamic Location - Lead Submission & Subheadline Validations", () => {
@@ -375,6 +323,11 @@ describe("We are all about community", () => {
 				"contain",
 				"aplaceformom.com/nursing-homes/florida/lakeland"
 			);
+
+			cy.sqlServer({domain : url, email : email}).then($result => {
+				expect($result.filter(p => p.source_id == sourceId && p.address == email).length > 0, 'Lead Stored in Database?').to.be.true;
+				cy.log($result.filter(p => p.source_id == sourceId && p.address == email));
+			});
 		});
 
 		it("Validate FDEs", () => {

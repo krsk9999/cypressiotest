@@ -52,7 +52,7 @@ describe("Local, Simple, Free new Landing Page", () => {
 			cy.singleFormSubmit()
 		})
 
-		it("Lead Submission cDot no Variant", () => {
+		it("Validate Phone Number cDot no Variant", () => {
 			let url = domainsData.localSimpleFree.url
 			let variant = domainsData.localSimpleFree.variants.a.url;
 			let phoneNumber = domainsData.localSimpleFree.variants.a.phone;

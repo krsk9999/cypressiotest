@@ -21,19 +21,21 @@
     "mochawesome-merge": "^2.0.1"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-object-rest-spread": "^7.7.4",
+    "@babel/register": "^7.7.4",
     "@cypress/mocha-teamcity-reporter": "^1.0.0",
     "@types/fs-extra": "^8.0.0",
+    "@types/tedious": "^4.0.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
     "cypress": "^3.7.0",
     "cypress-image-snapshot": "^3.1.1",
     "cypress-sql-server": "^1.0.0",
     "cypress-wait-until": "^1.3.0",
-    "dotenv": "^8.2.0",
     "jest": "^24.9.0",
     "mocha-junit-reporter": "^1.23.1",
     "moment": "^2.24.0",
     "mssql": "^6.0.1",
-    "npm-run-all": "^4.1.5",
+    "node-openvpn": "^0.1.1",
     "tedious": "^6.6.2"
   }
 }

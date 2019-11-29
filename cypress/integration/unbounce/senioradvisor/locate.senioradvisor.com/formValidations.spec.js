@@ -21,6 +21,7 @@ describe('locate.senioradvisor.com', () => {
 		let dynamicLocationData;
 		let pagePhone;
 		let ppUrl;
+		let navigationUrl;
 
 		//Variables
 		let location = Cypress.env('location') || 'New York, NY';
@@ -45,6 +46,7 @@ describe('locate.senioradvisor.com', () => {
 				ppUrl = domainsData.variants.a.ppUrl;
 				pagePhone = domainsData.variants.a.phone;
 				console.log(domainsData);
+				navigationUrl = url + variant;
 			});
 			cy.fixture('dynamicLocations.json').then(d => {
 				dynamicLocationData = d;
@@ -164,23 +166,24 @@ describe('locate.senioradvisor.com', () => {
 			cy.get('#user_first_name').should('have.value', name);
 
 			cy.get('#user_email').should('have.value', email);
+
+			cy.sqlServer({domain : url, email : email}).then($result => {
+				expect($result.filter(p => p.source_id == sourceId && p.address == email).length > 0, 'Lead Stored in Database?').to.be.true;
+				cy.log($result.filter(p => p.source_id == sourceId && p.address == email));
+			});
 		});
-		/*
+		
 		it("Validate Dynamic Locations First Scenario variant a", () => {
 			//URls for each of the 9 scenarios of the Dynamic Locations validations
 			let first = `${navigationUrl}${dynamicLocationData.first.queryString}`;
 
 			//Expected Values
 			let firstLocation = dynamicLocationData.first.expectedLocation;
-			cy.navigate(first, null);
+			cy.navigate(first, variant);
 			cy.get("#location_identifier").should("have.value", firstLocation);
 		});
 
 		it("Validate Dynamic Locations Second Scenario variant a", () => {
-			let url = domainsData.mDotSA.url;
-			let variant = domainsData.mDotSA.variants.a.url;
-			let navigationUrl = `${url}${variant}`;
-
 			//URls for each of the 9 scenarios of the Dynamic Locations validations
 			let second = `${navigationUrl}${dynamicLocationData.second.queryString}`;
 
@@ -192,10 +195,6 @@ describe('locate.senioradvisor.com', () => {
 		});
 
 		it("Validate Dynamic Locations Third Scenario variant a", () => {
-			let url = domainsData.mDotSA.url;
-			let variant = domainsData.mDotSA.variants.a.url;
-			let navigationUrl = `${url}${variant}`;
-
 			//URls for each of the 9 scenarios of the Dynamic Locations validations
 			let third = `${navigationUrl}${dynamicLocationData.third.queryString}`;
 
@@ -207,10 +206,6 @@ describe('locate.senioradvisor.com', () => {
 		});
 
 		it("Validate Dynamic Locations Fourth Scenario variant a", () => {
-			let url = domainsData.mDotSA.url;
-			let variant = domainsData.mDotSA.variants.a.url;
-			let navigationUrl = `${url}${variant}`;
-
 			//URls for each of the 9 scenarios of the Dynamic Locations validations
 			let fourth = `${navigationUrl}${dynamicLocationData.fourth.queryString}`;
 
@@ -222,10 +217,6 @@ describe('locate.senioradvisor.com', () => {
 		});
 
 		it("Validate Dynamic Locations Fifth Scenario variant a", () => {
-			let url = domainsData.mDotSA.url;
-			let variant = domainsData.mDotSA.variants.a.url;
-			let navigationUrl = `${url}${variant}`;
-
 			//URls for each of the 9 scenarios of the Dynamic Locations validations
 			let fifth = `${navigationUrl}${dynamicLocationData.fifth.queryString}`;
 
@@ -237,10 +228,6 @@ describe('locate.senioradvisor.com', () => {
 		});
 
 		it("Validate Dynamic Locations Sixth Scenario variant a", () => {
-			let url = domainsData.mDotSA.url;
-			let variant = domainsData.mDotSA.variants.a.url;
-			let navigationUrl = `${url}${variant}`;
-
 			//URls for each of the 9 scenarios of the Dynamic Locations validations
 			let sixth = `${navigationUrl}${dynamicLocationData.sixth.queryString}`;
 
@@ -252,10 +239,6 @@ describe('locate.senioradvisor.com', () => {
 		});
 
 		it("Validate Dynamic Locations Septh Scenario variant a", () => {
-			let url = domainsData.mDotSA.url;
-			let variant = domainsData.mDotSA.variants.a.url;
-			let navigationUrl = `${url}${variant}`;
-
 			//URls for each of the 9 scenarios of the Dynamic Locations validations
 			let septh = `${navigationUrl}${dynamicLocationData.septh.queryString}`;
 
@@ -267,10 +250,6 @@ describe('locate.senioradvisor.com', () => {
 		});
 
 		it("Validate Dynamic Locations Eighth Scenario variant a", () => {
-			let url = domainsData.mDotSA.url;
-			let variant = domainsData.mDotSA.variants.a.url;
-			let navigationUrl = `${url}${variant}`;
-
 			//URls for each of the 9 scenarios of the Dynamic Locations validations
 			let eighth = `${navigationUrl}${dynamicLocationData.eighth.queryString}`;
 
@@ -282,10 +261,6 @@ describe('locate.senioradvisor.com', () => {
 		});
 
 		it("Validate Dynamic Locations Nineth Scenario variant a", () => {
-			let url = domainsData.mDotSA.url;
-			let variant = domainsData.mDotSA.variants.a.url;
-			let navigationUrl = `${url}${variant}`;
-
 			//URls for each of the 9 scenarios of the Dynamic Locations validations
 			let nineth = `${navigationUrl}${dynamicLocationData.nineth.queryString}`;
 
@@ -295,6 +270,6 @@ describe('locate.senioradvisor.com', () => {
 			cy.navigate(nineth, null);
 			cy.get("#location_identifier").should("have.value", ninethLocation);
 		});
-		*/
+
 	});
 });

@@ -24,11 +24,15 @@
 		"ubUser": "kenneth.ramirez@aplaceformom.com",
 		"ubPass": "Nike!1986",
 		"CYPRESS_RECORD_KEY": "ab25a1ec-d69f-44ca-9655-92e6c09f86d5",
+		"VPN":{
+			"host":"https://mocha.aplaceformom.com"
+		},
 		"db": {
 			"userName": "kenneth.ramirez",
 			"password": "Passw0rd!",
 			"server": "EDWProd",
 			"domain": "apfm",
+			"requestTimeout" : 600000,
 			"options": {
 				"database": "YGL_LeadGen",
 				"encrypt": false,
