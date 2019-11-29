@@ -42,7 +42,6 @@ module.exports = (on, config) => {
 
 	on("task", tasks);
 
-	console.log(config.env.db);
 	// accept a configFile value or use dev by default
 	const file = config.env.configFile || "dev";
 
