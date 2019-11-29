@@ -8,5 +8,32 @@
 		"html": true,
 		"json": true,
 		"timestamp": "mmddyyyy_HHMMss"
+	},
+	"defaultCommandTimeout": 10000,
+	"execTimeout": 60000,
+	"taskTimeout": 60000,
+	"pageLoadTimeout": 60000,
+	"requestTimeout": 10000,
+	"responseTimeout": 30000,
+	"env": {
+		"location": "Bellevue, WA",
+		"email": "kenneth.ramirez@aplaceformom.com",
+		"name": "Kenneth Ramirez Sanchez",
+		"phone": "(555) 555-5555",
+		"ubUrl": "https://app.unbounce.com/users/sign_in",
+		"ubUser": "kenneth.ramirez@aplaceformom.com",
+		"ubPass": "Nike!1986",
+		"CYPRESS_RECORD_KEY": "ab25a1ec-d69f-44ca-9655-92e6c09f86d5",
+		"db": {
+			"userName": "kenneth.ramirez",
+			"password": "Passw0rd!",
+			"server": "EDWProd",
+			"domain": "apfm",
+			"options": {
+				"database": "YGL_LeadGen",
+				"encrypt": false,
+				"rowCollectionOnRequestCompletion": true
+			}
+		}
 	}
 }

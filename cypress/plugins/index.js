@@ -15,7 +15,7 @@ require("dotenv").config();
 // promisified fs module
 const fs = require("fs-extra");
 const path = require("path");
-// const selectTests = require('cypress-select-tests')
+const sqlServer = require("cypress-sql-server");
 
 // const pickTests = (filename, foundTests, config) => {
 //   console.log('picking tests from file', filename)
@@ -38,12 +38,16 @@ function getConfigurationByFile(file) {
 }
 
 module.exports = (on, config) => {
+	tasks = sqlServer.loadDBPlugin(config.env.db);
+
+	on("task", tasks);
+
+	console.log(config.env.db);
 	// accept a configFile value or use dev by default
 	const file = config.env.configFile || "dev";
 
 	//on('file:preprocessor', selectTests(config, pickTests))
 	on("before:browser:launch", (browser = {}, args) => {
-
 		// browser will look something like this
 		// {
 		//   name: 'chrome',
@@ -56,7 +60,7 @@ module.exports = (on, config) => {
 		if (browser.name === "chrome") {
 			// `args` is an array of all the arguments
 			// that will be passed to Chrome when it launchers
-			args.push("--start-fullscreen");
+			//args.push("--start-fullscreen");
 
 			// whatever you return here becomes the new args
 			return args;

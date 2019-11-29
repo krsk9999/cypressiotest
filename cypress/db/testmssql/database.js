@@ -17,7 +17,6 @@ var config = {
 };
 
 let site = process.env._SITE;
-//console.log(site);
 
 // connect to your database
 sql.connect(config, function(err) {
