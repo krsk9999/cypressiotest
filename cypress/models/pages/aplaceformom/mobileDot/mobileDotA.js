@@ -8,8 +8,8 @@ class mobileDotA extends basePage{
         this.name = "#full_name";
         this.email = "#email";
         this.phone = "#phone_number";     
-        this.nextButton = "#lp-pom-button-59";
-        this.submit = "#lp-pom-button-31";  
+        this.nextButton = "form button[type='submit']";
+        this.submit = "form button[type='submit']";  
     }
 
     get getNextElement(){

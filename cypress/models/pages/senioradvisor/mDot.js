@@ -7,7 +7,7 @@ class mDot extends basePage {
 		this.name = "#full_name";
 		this.email = "#email";
 		this.phone = "#phone_number";
-		this.nextButton = "#lp-pom-button-59";
+		this.nextButton = "form button[type='submit']";
 		this.submit = "form button[type='submit']";
 	}
 

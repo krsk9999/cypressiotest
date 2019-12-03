@@ -1,0 +1,16 @@
+{
+  "name": "vpn",
+  "version": "1.0.0",
+  "description": "",
+  "main": "vpn.js",
+  "scripts": {
+    "test": "node connect.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "dotenv": "^8.2.0",
+    "node-openvpn": "^0.1.1",
+    "openvpn-client": "0.0.2"
+  }
+}

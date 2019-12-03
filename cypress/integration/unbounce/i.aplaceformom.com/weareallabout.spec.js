@@ -1,5 +1,6 @@
 import iDot from "../../../models/pages/aplaceformom/iDot/iDot.js";
 import iDotTY from "../../../models/pages/aplaceformom/iDot/iDotTY.js";
+const openvpnmanager = require('node-openvpn');
 
 var moment = require("moment");
 moment().format();
@@ -61,6 +62,23 @@ describe("We are all about community", () => {
 
 			mainPage = new iDot();
 			tyPage = new iDotTY();
+
+			const opts = {
+				host: "mocha.aplaceformom.com", // normally '127.0.0.1', will default to if undefined
+				// port: 1337, //port openvpn management console
+				// timeout: 1500, //timeout for connection - optional, will default to 1500ms if undefined
+				logpath: "log.txt", //optional write openvpn console output to file, can be relative path or absolute
+			};
+			const auth = {
+				user: "kenneth.ramirez",
+				pass: "Passw0rd!",
+			};
+			const openvpn = openvpnmanager.connect(opts);
+
+			// will be emited on successful interfacing with openvpn instance
+			openvpn.on("connected", () => {
+				openvpnmanager.authorize(auth);
+			});
 		});
 
 		beforeEach(() => {
@@ -195,11 +213,19 @@ describe("We are all about community", () => {
 				".aplaceformom.com/assisted-living/washington/bellevue"
 			);
 
-			cy.sqlServer({domain : url, email : email}).then($result => {
-				expect($result.filter(p => p.source_id == sourceId && p.address == email).length > 0, 'Lead Stored in Database?').to.be.true;
-				cy.log($result.filter(p => p.source_id == sourceId && p.address == email));
+			cy.sqlServer({ domain: url, email: email }).then($result => {
+				expect(
+					$result.filter(
+						p => p.source_id == sourceId && p.address == email
+					).length > 0,
+					"Lead Stored in Database?"
+				).to.be.true;
+				cy.log(
+					$result.filter(
+						p => p.source_id == sourceId && p.address == email
+					)
+				);
 			});
-
 		});
 
 		it("Dynamic Location - Lead Submission & Subheadline Validations", () => {
@@ -324,9 +350,18 @@ describe("We are all about community", () => {
 				"aplaceformom.com/nursing-homes/florida/lakeland"
 			);
 
-			cy.sqlServer({domain : url, email : email}).then($result => {
-				expect($result.filter(p => p.source_id == sourceId && p.address == email).length > 0, 'Lead Stored in Database?').to.be.true;
-				cy.log($result.filter(p => p.source_id == sourceId && p.address == email));
+			cy.sqlServer({ domain: url, email: email }).then($result => {
+				expect(
+					$result.filter(
+						p => p.source_id == sourceId && p.address == email
+					).length > 0,
+					"Lead Stored in Database?"
+				).to.be.true;
+				cy.log(
+					$result.filter(
+						p => p.source_id == sourceId && p.address == email
+					)
+				);
 			});
 		});
 
