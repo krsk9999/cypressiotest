@@ -33,4 +33,4 @@ jobs:
         git config --global user.email "desycorp@gmail.com"
         git pull
         npm install
-        npm run cy:run:${{ env.environment }}:sanity    
+        npm run cy:run 
